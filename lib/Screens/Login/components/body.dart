@@ -25,10 +25,8 @@ class Body extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Colors.indigo.shade400,
-                    Colors.indigo.shade200,
                     Colors.indigo.shade100,
-                    Colors.indigo.shade50,
+                    Colors.white,
                   ]
               )
           ),

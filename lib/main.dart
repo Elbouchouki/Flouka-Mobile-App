@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+
       body: Container(
           color: Colors.white,
           child: Center(

@@ -10,13 +10,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo.shade200,
+        backgroundColor: Colors.indigo.shade900,
         elevation: 10.0,
         brightness: Brightness.dark,
         automaticallyImplyLeading: false,
         title: Container(
           width: 120,
-
         ),
         actions: <Widget>[
           IconButton(
@@ -25,7 +24,6 @@ class HomeScreen extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            tooltip: 'Comment Icon',
             onPressed: () {},
           ),
         ],
