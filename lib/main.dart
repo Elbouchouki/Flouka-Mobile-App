@@ -1,68 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 
 import 'Screens/Login/login_screen.dart';
+import 'Screens/Products/allRestaurants.dart';
 
-
-
-void main() => runApp(new MaterialApp(
-  home: MyApp(),
-  debugShowCheckedModeBanner: false,
-  routes: <String, WidgetBuilder>{},
-));
-
-
-
-
-class MyApp extends StatefulWidget {
-  static final String title = 'Navigation Drawer';
-  _MyAppState createState() => _MyAppState();
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: title,
-    theme: ThemeData(primarySwatch: Colors.blue),
-    home: LoginScreen(),
-  );
-}
-
-
-
-class _MyAppState extends State<MyApp> {
-  navigatePage() {
-    Navigator.of(context)
-        .pushReplacement(
-        new MaterialPageRoute(builder: (context) => LoginScreen()));
-  }
-
-  splashMove() {
-    return Timer(Duration(seconds: 4), navigatePage);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    splashMove();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-
-      body: Container(
-          color: Colors.white,
-          child: Center(
-            child: Image(
-              image: AssetImage("images/logo.png"),
-              height: 140,
-              width: 140,
-            ),
-          )),
-    );
-  }
-
-
-}
+void main() => runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: LoginScreen(),
+    ));

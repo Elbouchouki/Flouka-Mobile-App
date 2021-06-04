@@ -3,7 +3,6 @@ import 'package:flutter_auth/components/liste_categories.dart';
 import 'package:flutter_auth/components/liste_items.dart';
 import 'package:flutter_auth/components/liste_tous_produits.dart';
 
-
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
