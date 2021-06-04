@@ -8,7 +8,7 @@ class RestaurantController extends GetxController {
   // ignore: deprecated_member_use
   var filteredRestaurants = List<Restaurant>().obs;
 
-  void filterItems(v) {
+  void filterRestaurants(v) {
     filteredRestaurants.value = restaurants
         .where((item) => item.name.toLowerCase().contains(v.toLowerCase()))
         .toList();

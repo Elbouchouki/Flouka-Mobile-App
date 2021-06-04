@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 class RoundedButton extends StatelessWidget {
   final String text;
   final Function press;
   final Color color, textColor;
+  final double width;
   const RoundedButton({
     Key key,
     this.text,
+    this.width,
     this.press,
     this.color = Colors.indigo,
     this.textColor = Colors.white,
@@ -15,10 +16,9 @@ class RoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.4,
+      width: width,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         // ignore: deprecated_member_use
