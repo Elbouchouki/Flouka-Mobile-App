@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class ApiFlouka {
   static const String url =
-      'https://random-data-api.com/api/restaurant/random_restaurant?size=30';
+      'https://random-data-api.com/api/restaurant/random_restaurant?size=3';
   static Future<List<Restaurant>> getRestaurants() async {
     try {
       final response = await http.get(Uri.parse(url));
