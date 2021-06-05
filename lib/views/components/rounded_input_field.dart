@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/components/text_field_container.dart';
-
+import 'package:flutter_auth/views/components/text_field_container.dart';
 
 // ignore: camel_case_types
 class RoundedInputField_nom extends StatelessWidget {
@@ -32,6 +31,7 @@ class RoundedInputField_nom extends StatelessWidget {
     );
   }
 }
+
 // ignore: camel_case_types
 class RoundedInputField_email extends StatelessWidget {
   final String hintText;
@@ -62,6 +62,7 @@ class RoundedInputField_email extends StatelessWidget {
     );
   }
 }
+
 // ignore: camel_case_types
 class RoundedInputField_tele extends StatelessWidget {
   final String hintText;

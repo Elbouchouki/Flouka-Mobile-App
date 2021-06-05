@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/views/components/rounded_button.dart';
 import 'package:get/get.dart';
 
 class Confirmation extends StatelessWidget {

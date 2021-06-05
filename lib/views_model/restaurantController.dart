@@ -23,8 +23,4 @@ class RestaurantController extends GetxController {
   }
 
   void printData() => (print(restaurants.length));
-  @override
-  void onReady() {
-    super.onReady();
-  }
 }
