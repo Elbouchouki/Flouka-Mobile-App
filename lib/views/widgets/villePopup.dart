@@ -61,6 +61,7 @@ class VillePopup extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
+          width: 300,
           padding: EdgeInsets.only(top: 30, left: 16, right: 16, bottom: 16),
           margin: EdgeInsets.only(
             top: 10,
@@ -80,19 +81,9 @@ class VillePopup extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Villes"),
-              ),
-              TextField(),
-              SizedBox(height: 25),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Zones"),
-              ),
               DropdownButtonHideUnderline(
                 child: ButtonTheme(
-                  alignedDropdown: true,
+                  alignedDropdown: false,
                   child: DropdownButton<String>(
                     isDense: true,
                     hint: new Text("Choisir votre ville"),
@@ -111,9 +102,30 @@ class VillePopup extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 25),
+              DropdownButtonHideUnderline(
+                child: ButtonTheme(
+                  alignedDropdown: false,
+                  child: DropdownButton<String>(
+                    isDense: true,
+                    hint: new Text("Choisir votre zone"),
+                    value: _selected,
+                    onChanged: (value) {
+                      print(value);
+                    },
+                    items: _myJson.map((Map map) {
+                      return new DropdownMenuItem<String>(
+                        value: map["id"].toString(),
+                        // value: _mySelection,
+                        child: Text(map["name"]),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+              SizedBox(height: 25),
               RoundedButton(
                 text: "Appliquer",
-                width: 200,
+                width: 150,
                 press: () {
                   Navigator.pop(context);
                 },

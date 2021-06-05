@@ -72,7 +72,10 @@ class HomeScreen extends StatelessWidget {
                         return CategoryCard(
                             restaurant:
                                 restaurantController.filteredRestaurants[index],
-                            onCardClick: () {});
+                            onCardClick: () {
+                              print(restaurantController
+                                  .filteredRestaurants.length);
+                            });
                       },
                     ),
                   ),

@@ -1,7 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_auth/models/restaurantModel.dart';
 import 'package:flutter_auth/models/villeModel.dart';
 import 'package:flutter_auth/models/zoneModel.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
 class ApiFlouka {
   static const String restaurants =
@@ -11,46 +12,29 @@ class ApiFlouka {
 
   static Future<List<Restaurant>> getRestaurants() async {
     try {
-      final response = await http.get(Uri.parse(restaurants));
-      if (response.statusCode == 200) {
-        final List<Restaurant> listRestaurants =
-            Restaurant.restaurantFromJson(response.body);
-        return listRestaurants;
-      }
-      // ignore: deprecated_member_use
-      return List<Restaurant>();
-    } catch (e) {
-      // ignore: deprecated_member_use
+      final response = await Dio().get(restaurants);
+      return (response.data as List)
+          .map((e) => Restaurant.fromJson(e))
+          .toList();
+    } catch (ex) {
       return List<Restaurant>();
     }
   }
 
   static Future<List<Ville>> getVilles() async {
     try {
-      final response = await http.get(Uri.parse(villes));
-      if (response.statusCode == 200) {
-        final List<Ville> listVilles = Ville.villeFromJson(response.body);
-        return listVilles;
-      }
-      // ignore: deprecated_member_use
-      return List<Ville>();
-    } catch (e) {
-      // ignore: deprecated_member_use
+      final response = await Dio().get(villes);
+      return (response.data as List).map((e) => Ville.fromJson(e)).toList();
+    } catch (ex) {
       return List<Ville>();
     }
   }
 
   static Future<List<Zone>> getZones() async {
     try {
-      final response = await http.get(Uri.parse(zones));
-      if (response.statusCode == 200) {
-        final List<Zone> listZones = Zone.zoneFromJson(response.body);
-        return listZones;
-      }
-      // ignore: deprecated_member_use
-      return List<Zone>();
-    } catch (e) {
-      // ignore: deprecated_member_use
+      final response = await Dio().get(zones);
+      return (response.data as List).map((e) => Zone.fromJson(e)).toList();
+    } catch (ex) {
       return List<Zone>();
     }
   }
