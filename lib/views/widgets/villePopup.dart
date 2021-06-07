@@ -4,12 +4,10 @@ import 'package:flutter_auth/views/components/rounded_button.dart';
 import 'package:flutter_auth/views_model/villeController.dart';
 import 'package:flutter_auth/views_model/zoneController.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class VillePopup extends StatelessWidget {
   VilleController villeController = Get.find();
   ZoneController zoneController = Get.find();
-  final session = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +54,13 @@ class VillePopup extends StatelessWidget {
                         child: DropdownButton<String>(
                           isDense: true,
                           hint: new Text("Choisir votre ville"),
-                          value: (session.read("villeSelected") == true)
-                              ? session.read("villeId").toString()
+                          value: (villeController.isVilleSelected.value)
+                              ? villeController.selectedVille.value.id
+                                  .toString()
                               : null,
                           onChanged: (value) {
                             villeController.changeSelectedVille(value);
+                            zoneController.clearZone();
                             zoneController.filterZones(value);
                           },
                           items: villeController.villes
@@ -78,7 +78,7 @@ class VillePopup extends StatelessWidget {
                         child: DropdownButton<String>(
                           isDense: true,
                           hint: new Text("Choisir votre zone"),
-                          value: (session.read("zoneSelected"))
+                          value: (zoneController.isZoneSelected.value)
                               ? zoneController.selectedZone.value.id.toString()
                               : null,
                           onChanged: (value) {
@@ -97,8 +97,8 @@ class VillePopup extends StatelessWidget {
                       text: "Appliquer",
                       width: 150,
                       press: () {
-                        (session.read("villeSelected") &&
-                                session.read("zoneSelected"))
+                        (zoneController.isZoneSelected.value &&
+                                villeController.isVilleSelected.value)
                             ? Navigator.pop(context)
                             : Get.snackbar("error", "selectionner une ville",
                                 backgroundColor: Colors.white,

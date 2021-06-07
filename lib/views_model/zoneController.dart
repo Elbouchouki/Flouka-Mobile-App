@@ -10,11 +10,16 @@ class ZoneController extends GetxController {
   // ignore: deprecated_member_use
   var filtredZones = List<Zone>().obs;
   var selectedZone = Zone().obs;
-
+  var isZoneSelected = false.obs;
   void changeSelectedZone(id) {
     selectedZone.value = filtredZones.firstWhere((v) => v.id == int.parse(id));
-
     _saveSession(selectedZone.value);
+    isZoneSelected.value = true;
+  }
+
+  void clearZone() {
+    isZoneSelected.value = false;
+    filtredZones.clear();
   }
 
   void _saveSession(Zone zone) {
@@ -36,6 +41,7 @@ class ZoneController extends GetxController {
       if (_session.read("zoneSelected")) {
         selectedZone.value.id = _session.read("zoneId");
         selectedZone.value.nom = _session.read("zoneName");
+        isZoneSelected.value = _session.read("zoneSelected");
         filterZones(_session.read("villeId").toString());
       }
     });
