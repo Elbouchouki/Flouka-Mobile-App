@@ -8,10 +8,12 @@ class VilleController extends GetxController {
   // ignore: deprecated_member_use
   var villes = List<Ville>().obs;
   var selectedVille = Ville().obs;
+  var isVilleSelected = false.obs;
 
   void changeSelectedVille(id) {
     selectedVille.value = villes.firstWhere((v) => v.id == int.parse(id));
     _saveSession(selectedVille.value);
+    isVilleSelected.value = true;
   }
 
   void _saveSession(Ville ville) {
@@ -23,6 +25,7 @@ class VilleController extends GetxController {
   @override
   void onInit() {
     if (session.read("villeSelected") == true) {
+      isVilleSelected.value = session.read("villeSelected");
       selectedVille.value.id = session.read("villeId");
       selectedVille.value.nom = session.read("villeName");
     }
