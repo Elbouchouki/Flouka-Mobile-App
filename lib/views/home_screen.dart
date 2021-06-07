@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   final session = GetStorage();
   RestaurantController restaurantController = Get.find();
@@ -69,6 +70,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _Categories() {
     return Container(
         color: Colors.white,
@@ -85,9 +87,12 @@ class HomeScreen extends StatelessWidget {
                           restaurantController.filteredRestaurants.length,
                       itemBuilder: (BuildContext ctx, int index) {
                         return CategoryCard(
-                            restaurant:
-                                restaurantController.filteredRestaurants[index],
-                            onCardClick: () {});
+                          restaurant:
+                              restaurantController.filteredRestaurants[index],
+                          onCardClick: () {
+                            Get.toNamed("/products");
+                          },
+                        );
                       },
                     ),
                   ),
