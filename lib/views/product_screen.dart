@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/views/widgets/customAppBar.dart';
-import 'package:flutter_auth/views/widgets/product_card.dart';
-import 'package:flutter_auth/views/widgets/sidemenubar.dart';
+import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/views/components/categorycard.dart';
+import 'package:flutter_auth/views/widgets/villePopup.dart';
+import 'package:flutter_auth/views_model/restaurantController.dart';
+import 'package:flutter_auth/views_model/villeController.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ProductView extends StatelessWidget {
+  final session = GetStorage();
+  RestaurantController restaurantController = Get.find();
+  VilleController villeController = Get.find();
+
+  final List<String> listOfMenu = [
+    'Toute',
+    'Crustacés',
+    'Poissons nobles',
+    'Cephalopodes',
+    'Coquillages',
+    'Poissons bleus',
+    'Packs frais',
+    'Packs congelés',
+    'Packs mixtes'
+  ];
+
   @override
   Widget build(BuildContext context) {
     final List<String> _listItem = [
@@ -15,27 +35,206 @@ class ProductView extends StatelessWidget {
       'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
     ];
     return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: Drawer(
-        child: SideMenuBar(),
-      ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                child: GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              children: _listItem
-                  .map((item) => ProductCard(image: item, title: "blabla"))
-                  .toList(),
-            ))
-          ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(130),
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  color: darkBlueColor,
+                  height: 40,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      SizedBox(width: 15),
+                      Container(
+                        height: 30,
+                        child: RawMaterialButton(
+                            fillColor: lightBlueColor,
+                            splashColor: darkBlueColor,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 10, left: 5),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Obx(() => Text(
+                                        (villeController.isVilleSelected.value)
+                                            ? villeController
+                                                .selectedVille.value.nom
+                                            : "Zone Livraison",
+                                        maxLines: 1,
+                                        style: TextStyle(color: Colors.white),
+                                      )),
+                                ],
+                              ),
+                            ),
+                            onPressed: () => showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) => VillePopup()),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)))),
+                      ),
+                      Spacer(),
+                      Row(children: <Widget>[
+                        Icon(
+                          Icons.phone,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          "+212 6 19 82 65 01",
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w300),
+                        ),
+                      ]),
+                      SizedBox(width: 15),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: darkBlueColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "Poisson Frais",
+                                    style: TextStyle(
+                                      color: darkGray,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      Spacer(),
+                      Container(
+                        child: Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.search, color: darkBlueColor),
+                              onPressed: () => {},
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.shopping_cart,
+                                  color: darkBlueColor),
+                              onPressed: () => {},
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 40,
+                  child: ListView.builder(
+                      itemCount: listOfMenu.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, i) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: 5, left: 20, right: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              print(listOfMenu[i]);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color:
+                                    // numbersOfOrders
+                                    //                 .selectedIndexOfMenuList !=
+                                    //             null &&
+                                    //         numbersOfOrders
+                                    //                 .selectedIndexOfMenuList ==
+                                    //             i
+                                    (1 == 1) ? darkBlueColor : Colors.white,
+                                border: Border.all(
+                                  color: darkBlueColor,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    listOfMenu[i],
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
-    );
+        body: Container(
+            color: Colors.white,
+            padding: EdgeInsets.all(10),
+            child: restaurantController.filteredRestaurants.length <= 0
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount:
+                              restaurantController.filteredRestaurants.length,
+                          itemBuilder: (BuildContext ctx, int index) {
+                            return CategoryCard(
+                                restaurant: restaurantController
+                                    .filteredRestaurants[index],
+                                onCardClick: () {
+                                  Get.toNamed("/details");
+                                });
+                          },
+                        ),
+                      ),
+                    ],
+                  )));
   }
 }

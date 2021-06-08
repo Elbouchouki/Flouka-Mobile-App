@@ -4,7 +4,7 @@ import 'package:flutter_auth/constants.dart';
 class SideMenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool userLoggedIn = true;
+    bool userLoggedIn = false;
 
     return Scaffold(
         body: Container(
@@ -37,7 +37,7 @@ class SideMenuBar extends StatelessWidget {
                               children: [
                                 Icon(Icons.home, color: Colors.white, size: 20),
                                 SizedBox(width: 10),
-                                Text('Welcome',
+                                Text('Accueil',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20))
                               ],

@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/views/widgets/villePopup.dart';
-import 'package:flutter_auth/views_model/restaurantController.dart';
 import 'package:flutter_auth/views_model/villeController.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  RestaurantController restaurantController = Get.find();
   VilleController villeController = Get.find();
-
   @override
   final Size preferredSize;
   CustomAppBar({Key key})
       : preferredSize = Size.fromHeight(90),
         super(key: key);
-
   @override
   Widget build(BuildContext context) {
     String _currentRoute = ModalRoute.of(context).settings.name;
@@ -122,10 +118,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Container(
                     child: Row(
                       children: [
-                        IconButton(
-                          icon: Icon(Icons.search, color: darkBlueColor),
-                          onPressed: () => {},
-                        ),
+                        // IconButton(
+                        //   icon: Icon(Icons.search, color: darkBlueColor),
+                        //   onPressed: () => {},
+                        // ),
                         IconButton(
                           icon: Icon(Icons.shopping_cart, color: darkBlueColor),
                           onPressed: () => {},

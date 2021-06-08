@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/helper/binding.dart';
 import 'package:flutter_auth/views/confirmation_model.dart';
+import 'package:flutter_auth/views/detailsView.dart';
 import 'package:flutter_auth/views/home_screen.dart';
 import 'package:flutter_auth/views/login_screen.dart';
 import 'package:flutter_auth/views/product_screen.dart';
@@ -39,6 +40,10 @@ void main() async {
       GetPage(
           name: "/products",
           page: () => ProductView(),
+          transition: Transition.cupertino),
+      GetPage(
+          name: "/details",
+          page: () => Details(),
           transition: Transition.cupertino),
     ],
   ));
