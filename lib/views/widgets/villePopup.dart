@@ -26,10 +26,9 @@ class VillePopup extends StatelessWidget {
         : Stack(
             children: <Widget>[
               Container(
-                width: 300,
-                height: 200,
+                width: 250,
                 padding:
-                    EdgeInsets.only(top: 30, left: 16, right: 16, bottom: 16),
+                    EdgeInsets.only(top: 30, left: 15, right: 15, bottom: 16),
                 margin: EdgeInsets.only(
                   top: 10,
                 ),
@@ -50,9 +49,10 @@ class VillePopup extends StatelessWidget {
                   children: <Widget>[
                     DropdownButtonHideUnderline(
                       child: ButtonTheme(
-                        alignedDropdown: false,
+                        alignedDropdown: true,
                         child: DropdownButton<String>(
                           isDense: true,
+                          isExpanded: true,
                           hint: new Text("Choisir votre ville"),
                           value: (villeController.isVilleSelected.value)
                               ? villeController.selectedVille.value.id
@@ -74,8 +74,9 @@ class VillePopup extends StatelessWidget {
                     SizedBox(height: 20),
                     DropdownButtonHideUnderline(
                       child: ButtonTheme(
-                        alignedDropdown: false,
+                        alignedDropdown: true,
                         child: DropdownButton<String>(
+                          isExpanded: true,
                           isDense: true,
                           hint: new Text("Choisir votre zone"),
                           value: (zoneController.isZoneSelected.value)
@@ -97,15 +98,18 @@ class VillePopup extends StatelessWidget {
                       text: "Appliquer",
                       width: 150,
                       press: () {
-                        (zoneController.isZoneSelected.value &&
-                                villeController.isVilleSelected.value)
-                            ? Navigator.pop(context)
-                            : Get.snackbar("error", "selectionner une ville",
-                                backgroundColor: Colors.white,
-                                snackPosition: SnackPosition.BOTTOM,
-                                icon: Icon(Icons.notifications),
-                                shouldIconPulse: true,
-                                margin: EdgeInsets.all(20));
+                        if (zoneController.isZoneSelected.value &&
+                            villeController.isVilleSelected.value) {
+                          zoneController.save();
+                          villeController.save();
+                          Navigator.pop(context);
+                        } else
+                          Get.snackbar("error", "selectionner une ville",
+                              backgroundColor: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM,
+                              icon: Icon(Icons.notifications),
+                              shouldIconPulse: true,
+                              margin: EdgeInsets.all(20));
                       },
                       color: darkBlueColor,
                     ),

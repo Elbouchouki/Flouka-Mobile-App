@@ -13,7 +13,7 @@ class ZoneController extends GetxController {
   var isZoneSelected = false.obs;
   void changeSelectedZone(id) {
     selectedZone.value = filtredZones.firstWhere((v) => v.id == int.parse(id));
-    _saveSession(selectedZone.value);
+
     isZoneSelected.value = true;
   }
 
@@ -22,10 +22,10 @@ class ZoneController extends GetxController {
     filtredZones.clear();
   }
 
-  void _saveSession(Zone zone) {
+  void save() {
     _session.write("zoneSelected", true);
-    _session.write("zoneId", zone.id);
-    _session.write("zoneName", zone.nom);
+    _session.write("zoneId", selectedZone.value.id);
+    _session.write("zoneName", selectedZone.value.nom);
   }
 
   void filterZones(villeId) {

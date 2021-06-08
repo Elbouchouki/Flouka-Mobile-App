@@ -8,3 +8,4 @@ const Color menuColor = Color(0xFF6F35A5);
 const Color menuHoverColor = Color(0xB3FFFFFF);
 const Color drawerColor = lightBlueColor;
 const List<Color> authLinarGrad = [Color(0xFFFFFFFF), Color(0xFFFFFFFF)];
+final GlobalKey<ScaffoldState> homeScreenScaffold = GlobalKey<ScaffoldState>();

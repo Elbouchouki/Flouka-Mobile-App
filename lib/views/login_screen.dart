@@ -26,9 +26,9 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: size.height * 0.1),
                   Image.asset(
                     "assets/images/logo.png",
-                    height: size.height * 0.1,
+                    height: size.height * 0.12,
                   ),
-                  SizedBox(height: size.height * 0.2),
+                  SizedBox(height: size.height * 0.1),
                   RoundedInputField_email(
                     hintText: "E-mail ou Téléphone",
                     onChanged: (value) {},
@@ -38,12 +38,12 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: size.height * 0.05),
                   RoundedButton(
-                    width: 200,
+                    width: 150,
                     color: darkBlueColor,
                     text: "Se connecter",
                     press: () => Get.offAllNamed("/home"),
                   ),
-                  SizedBox(height: size.height * 0.1),
+                  SizedBox(height: size.height * 0.30),
                   Text(
                     "Vous n'être pas encore inscrit sur Flouka ? ",
                     style: TextStyle(color: Colors.black),

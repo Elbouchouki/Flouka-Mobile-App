@@ -12,14 +12,13 @@ class VilleController extends GetxController {
 
   void changeSelectedVille(id) {
     selectedVille.value = villes.firstWhere((v) => v.id == int.parse(id));
-    _saveSession(selectedVille.value);
     isVilleSelected.value = true;
   }
 
-  void _saveSession(Ville ville) {
+  void save() {
     session.write("villeSelected", true);
-    session.write("villeId", ville.id);
-    session.write("villeName", ville.nom);
+    session.write("villeId", selectedVille.value.id);
+    session.write("villeName", selectedVille.value.nom);
   }
 
   @override
