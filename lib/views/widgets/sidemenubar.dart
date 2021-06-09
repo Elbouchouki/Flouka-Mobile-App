@@ -4,7 +4,7 @@ import 'package:flutter_auth/constants.dart';
 class SideMenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool userLoggedIn = false;
+    bool userLoggedIn = true;
 
     return Scaffold(
         body: Container(
@@ -16,6 +16,7 @@ class SideMenuBar extends StatelessWidget {
               children: [
                 Column(
                   children: [
+                    SizedBox(height: 80),
                     TextButton(
                         onPressed: () {},
                         child: Row(
@@ -27,24 +28,84 @@ class SideMenuBar extends StatelessWidget {
                                     color: Colors.white, fontSize: 20))
                           ],
                         )),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
+                    TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Icon(Icons.grid_view_rounded,
+                              color: Colors.white, size: 20),
+                          SizedBox(width: 10),
+                          Text('Categories',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20))
+                        ],
+                      ),
+                    ),
                     Visibility(
-                      visible: !userLoggedIn,
+                      visible: userLoggedIn,
+                      child: SizedBox(height: 20),
+                    ),
+                    Visibility(
+                      visible: userLoggedIn,
                       child: TextButton(
                         onPressed: () {},
                         child: Row(
                           children: [
-                            Icon(userLoggedIn ? Icons.logout : Icons.login,
+                            Icon(Icons.account_circle_rounded,
                                 color: Colors.white, size: 20),
                             SizedBox(width: 10),
-                            Text(userLoggedIn ? 'Sign Out' : 'Sign In',
+                            Text('Profile',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20))
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 20),
+                    TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Icon(Icons.info_rounded,
+                              color: Colors.white, size: 20),
+                          SizedBox(width: 10),
+                          Text('About',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20))
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Icon(Icons.contact_support,
+                              color: Colors.white, size: 20),
+                          SizedBox(width: 10),
+                          Text('Contact',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20))
+                        ],
+                      ),
+                    ),
                   ],
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        Icon(userLoggedIn ? Icons.logout : Icons.login,
+                            color: Colors.white, size: 20),
+                        SizedBox(width: 10),
+                        Text(userLoggedIn ? 'Se Deconnecter' : 'Se Connecter',
+                            style: TextStyle(color: Colors.white, fontSize: 20))
+                      ],
+                    ),
+                  ),
                 ),
               ],
             )));

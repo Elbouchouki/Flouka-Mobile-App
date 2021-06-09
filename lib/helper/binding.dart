@@ -1,3 +1,4 @@
+import 'package:flutter_auth/views_model/productViewController.dart';
 import 'package:flutter_auth/views_model/restaurantController.dart';
 import 'package:flutter_auth/views_model/villeController.dart';
 import 'package:flutter_auth/views_model/zoneController.dart';
@@ -13,5 +14,6 @@ class HomeBinding implements Bindings {
     Get.lazyPut<RestaurantController>(() => RestaurantController());
     Get.lazyPut<VilleController>(() => VilleController());
     Get.lazyPut<ZoneController>(() => ZoneController());
+    Get.lazyPut<ProductViewController>(() => ProductViewController());
   }
 }

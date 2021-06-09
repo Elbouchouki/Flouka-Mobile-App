@@ -2,16 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductViewController extends GetxController {
-  List<Widget> list = [
-    Tab(icon: Icon(Icons.card_travel)),
-    Tab(icon: Icon(Icons.add_shopping_cart)),
-  ];
+  List<String> listOfMenu = [
+    'Toute',
+    'Crustacés',
+    'Poissons nobles',
+    'Cephalopodes',
+    'Coquillages',
+    'Poissons bleus',
+    'Packs frais',
+    'Packs congelés',
+    'Packs mixtes'
+  ].obs;
+  RxInt selectedIndexOfMenuList = 0.obs;
 
-  TabController tabController;
+  void changeMenuIndex(index) {
+    selectedIndexOfMenuList.value = index;
+  }
 
   @override
   void onInit() {
-    tabController.index = 0;
     super.onInit();
   }
 }

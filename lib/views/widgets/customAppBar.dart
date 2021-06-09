@@ -124,7 +124,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         // ),
                         IconButton(
                           icon: Icon(Icons.shopping_cart, color: darkBlueColor),
-                          onPressed: () => {},
+                          onPressed: () => {Get.toNamed("/cart")},
                         ),
                       ],
                     ),

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class ApiFlouka {
   static const String restaurants =
-      'https://random-data-api.com/api/restaurant/random_restaurant?size=3';
+      'https://random-data-api.com/api/restaurant/random_restaurant?size=10';
   static const String villes = 'https://profondesolution.online/api/villes';
   static const String zones = 'https://profondesolution.online/api/zones';
 

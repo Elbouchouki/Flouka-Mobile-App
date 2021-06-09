@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/views/components/categorycard.dart';
@@ -16,14 +17,6 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> _listItem = [
-      'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
-      'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
-      'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
-      'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
-      'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
-      'https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjM2NTI5fQ',
-    ];
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(130),
@@ -142,7 +135,7 @@ class ProductView extends StatelessWidget {
                             IconButton(
                               icon: Icon(Icons.shopping_cart,
                                   color: darkBlueColor),
-                              onPressed: () => {},
+                              onPressed: () => {Get.toNamed("/cart")},
                             ),
                           ],
                         ),
@@ -169,12 +162,14 @@ class ProductView extends StatelessWidget {
                           itemCount:
                               restaurantController.filteredRestaurants.length,
                           itemBuilder: (BuildContext ctx, int index) {
-                            return CategoryCard(
-                                restaurant: restaurantController
-                                    .filteredRestaurants[index],
-                                onCardClick: () {
-                                  Get.toNamed("/details");
-                                });
+                            return ZoomIn(
+                                duration: Duration(milliseconds: 100 * index),
+                                child: CategoryCard(
+                                    restaurant: restaurantController
+                                        .filteredRestaurants[index],
+                                    onCardClick: () {
+                                      Get.toNamed("/details");
+                                    }));
                           },
                         ),
                       ),

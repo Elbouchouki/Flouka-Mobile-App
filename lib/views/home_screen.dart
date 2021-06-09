@@ -6,6 +6,7 @@ import 'package:flutter_auth/views/widgets/hero.dart';
 import 'package:flutter_auth/views/widgets/sidemenubar.dart';
 import 'package:flutter_auth/views/widgets/customAppBar.dart';
 import 'package:flutter_auth/views/widgets/villePopup.dart';
+import 'package:flutter_auth/views_model/productViewController.dart';
 import 'package:flutter_auth/views_model/restaurantController.dart';
 import 'package:flutter_auth/views_model/villeController.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   final session = GetStorage();
   RestaurantController restaurantController = Get.find();
   VilleController villeController = Get.find();
+  ProductViewController pwc = Get.find();
   @override
   Widget build(BuildContext context) {
     if (session.read("villeSelected") == false) {
