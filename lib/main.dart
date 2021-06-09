@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/helper/binding.dart';
-import 'package:flutter_auth/views/CartView.dart';
+import 'package:flutter_auth/views/cartView.dart';
 import 'package:flutter_auth/views/confirmation_model.dart';
 import 'package:flutter_auth/views/detailsView.dart';
 import 'package:flutter_auth/views/home_screen.dart';

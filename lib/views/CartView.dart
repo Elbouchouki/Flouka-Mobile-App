@@ -161,7 +161,7 @@ class CartView extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Column(
-            children: List.generate(4, (index) {
+            children: List.generate(products.length, (index) {
               return FadeInDown(
                 duration: Duration(milliseconds: 350 * index),
                 child: Padding(
@@ -222,6 +222,11 @@ class CartView extends StatelessWidget {
                                     fontSize: 15, fontWeight: FontWeight.w500),
                               ),
                               Text(
+                                products[index]['price'] + " Dh",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
                                 "x1",
                                 style: TextStyle(
                                     fontSize: 14,
@@ -238,52 +243,61 @@ class CartView extends StatelessWidget {
               );
             }),
           ),
-          SizedBox(
-            height: 50,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 30, right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "Total",
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black.withOpacity(0.5),
-                      fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  "508.00" + " Dh",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                color: darkBlueColor,
-                onPressed: () {},
-                child: Container(
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      "PAYER",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )),
-          )
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 0,
+        child: Container(
+          height: 120,
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              Padding(
+                padding: EdgeInsets.only(left: 30, right: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Total",
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.black.withOpacity(0.5),
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      "508.00" + " Dh",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: darkBlueColor,
+                    onPressed: () {},
+                    child: Container(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "PAYER",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
