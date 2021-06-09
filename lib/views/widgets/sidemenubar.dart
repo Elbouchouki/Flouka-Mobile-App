@@ -20,6 +20,20 @@ class SideMenuBar extends StatelessWidget {
                         onPressed: () {},
                         child: Row(
                           children: [
+                            Icon(Icons.home, color: Colors.white, size: 20),
+                            SizedBox(width: 10),
+                            Text('Accueil',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20))
+                          ],
+                        )),
+                    SizedBox(height: 10),
+                    Visibility(
+                      visible: !userLoggedIn,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          children: [
                             Icon(userLoggedIn ? Icons.logout : Icons.login,
                                 color: Colors.white, size: 20),
                             SizedBox(width: 10),
@@ -27,21 +41,9 @@ class SideMenuBar extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20))
                           ],
-                        )),
-                    SizedBox(height: 10),
-                    Visibility(
-                        visible: !userLoggedIn,
-                        child: TextButton(
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Icon(Icons.home, color: Colors.white, size: 20),
-                                SizedBox(width: 10),
-                                Text('Accueil',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20))
-                              ],
-                            )))
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],
