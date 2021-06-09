@@ -45,14 +45,14 @@ class Categories extends StatelessWidget {
                   cat: 1),
               CategoryCard(
                   image: Image.asset(
-                    "images/cat1.jpg",
+                    "images/cat2.jpg",
                     fit: BoxFit.cover,
                   ),
                   name: "Congelés",
                   cat: 2),
               CategoryCard(
                   image: Image.asset(
-                    "images/cat1.jpg",
+                    "images/cat3.jpg",
                     fit: BoxFit.cover,
                   ),
                   name: "Épicerie",

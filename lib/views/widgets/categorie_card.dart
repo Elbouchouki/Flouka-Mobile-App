@@ -12,7 +12,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed("/products?id=${this.cat}"),
+      onTap: () => Get.toNamed("/products", arguments: [cat, name]),
       child: Column(
         children: [
           ClipRRect(

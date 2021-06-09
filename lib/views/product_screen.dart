@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/views/components/categorycard.dart';
+import 'package:flutter_auth/views/widgets/sous_categories.dart';
 import 'package:flutter_auth/views/widgets/villePopup.dart';
 import 'package:flutter_auth/views_model/restaurantController.dart';
 import 'package:flutter_auth/views_model/villeController.dart';
@@ -11,18 +12,7 @@ class ProductView extends StatelessWidget {
   final session = GetStorage();
   RestaurantController restaurantController = Get.find();
   VilleController villeController = Get.find();
-
-  final List<String> listOfMenu = [
-    'Toute',
-    'Crustacés',
-    'Poissons nobles',
-    'Cephalopodes',
-    'Coquillages',
-    'Poissons bleus',
-    'Packs frais',
-    'Packs congelés',
-    'Packs mixtes'
-  ];
+  List args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +120,7 @@ class ProductView extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "Poisson Frais",
+                                    args[1],
                                     style: TextStyle(
                                       color: darkGray,
                                       fontWeight: FontWeight.bold,
@@ -160,53 +150,7 @@ class ProductView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  color: Colors.white,
-                  height: 40,
-                  child: ListView.builder(
-                      itemCount: listOfMenu.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, i) {
-                        return Padding(
-                          padding: EdgeInsets.only(top: 5, left: 20, right: 10),
-                          child: GestureDetector(
-                            onTap: () {
-                              print(listOfMenu[i]);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color:
-                                    // numbersOfOrders
-                                    //                 .selectedIndexOfMenuList !=
-                                    //             null &&
-                                    //         numbersOfOrders
-                                    //                 .selectedIndexOfMenuList ==
-                                    //             i
-                                    (1 == 1) ? darkBlueColor : Colors.white,
-                                border: Border.all(
-                                  color: darkBlueColor,
-                                ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(5),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Text(
-                                    listOfMenu[i],
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                ),
+                SousCategories(),
               ],
             ),
           ),
