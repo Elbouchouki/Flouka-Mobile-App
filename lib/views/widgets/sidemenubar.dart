@@ -16,6 +16,8 @@ class SideMenuBar extends StatelessWidget {
               children: [
                 Column(
                   children: [
+                    SizedBox(height: 20),
+                    Image.asset("images/logowhite.png"),
                     SizedBox(height: 80),
                     TextButton(
                         onPressed: () {},
