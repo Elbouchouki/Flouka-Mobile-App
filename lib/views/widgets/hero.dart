@@ -9,7 +9,7 @@ class CustomHero extends StatelessWidget {
     return Container(
       child: Container(
         width: double.infinity,
-        height: 250,
+        height: MediaQuery.of(context).size.height * .35,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
@@ -53,9 +53,6 @@ class CustomHero extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
               ),
             ],
           ),

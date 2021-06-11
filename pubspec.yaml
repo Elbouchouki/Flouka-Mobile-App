@@ -19,6 +19,8 @@ environment:
 dependencies:
   direct_select: "^1.0.0"
   get_storage:
+  flutter_slidable:
+
   get: ^4.1.4
   curved_navigation_bar: ^0.3.7
   flutter:
@@ -30,6 +32,8 @@ dependencies:
   carousel_pro: ^1.0.0
   flutter_svg: ^0.22.0
   dio:
+  collection: ^1.14.13
+
   google_fonts: ^2.1.0
   animate_do: ^1.7.2
 

@@ -1,10 +1,12 @@
-import 'package:flutter_auth/models/villeModel.dart';
+import 'package:flutter_auth/controllers/stockController.dart';
+import 'package:flutter_auth/models/ville.dart';
 import 'package:flutter_auth/services/apiFlouka.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class VilleController extends GetxController {
   final session = GetStorage();
+  StockController _stockController = Get.find();
   // ignore: deprecated_member_use
   var villes = List<Ville>().obs;
   var selectedVille = Ville().obs;

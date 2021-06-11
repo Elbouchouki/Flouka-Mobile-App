@@ -24,27 +24,27 @@ class SignUpScreen extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: size.height * 0.1),
                 Image.asset(
-                  "assets/images/logo.png",
+                  logoFloukaPrimary,
                   height: size.height * 0.12,
                 ),
                 SizedBox(height: size.height * 0.1),
                 RoundedInputField_nom(
-                  hintText: "Nom et prénom",
+                  hintText: signupinputName,
                   onChanged: (value) {},
                 ),
                 RoundedInputField_email(
-                  hintText: "E-mail",
+                  hintText: signupinputEmail,
                   onChanged: (value) {},
                 ),
                 RoundedInputField_tele(
-                  hintText: "Téléphone",
+                  hintText: signupinputPhone,
                   onChanged: (value) {},
                 ),
                 SizedBox(height: size.height * 0.05),
                 RoundedButton(
                   width: 150,
-                  color: darkBlueColor,
-                  text: "S'inscrire",
+                  color: signupButtonColor,
+                  text: signupButton,
                   press: () {
                     Get.toNamed("/confirmation");
                   },
@@ -54,24 +54,17 @@ class SignUpScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Vous avez déja un compte ? ",
-                      style: TextStyle(color: Colors.black),
+                      signupBottomText,
+                      style: signupBottomTextStyle,
                     ),
                     GestureDetector(
                       onTap: () => Get.toNamed("/login"),
                       child: Text(
-                        " Connectez-vous",
-                        style: TextStyle(
-                          color: darkBlueColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        signupBottomButton,
+                        style: signupBottomButtomStyle,
                       ),
                     ),
                   ],
-                ),
-                Divider(
-                  color: Color(0xFFFFFF),
-                  height: 20,
                 ),
               ],
             ),

@@ -1,23 +1,21 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/views/components/categorycard.dart';
+import 'package:flutter_auth/controllers/cartController.dart';
 import 'package:flutter_auth/views/widgets/cartegories.dart';
-import 'package:flutter_auth/views/widgets/hero.dart';
 import 'package:flutter_auth/views/widgets/sidemenubar.dart';
 import 'package:flutter_auth/views/widgets/customAppBar.dart';
 import 'package:flutter_auth/views/widgets/villePopup.dart';
-import 'package:flutter_auth/views_model/productViewController.dart';
-import 'package:flutter_auth/views_model/restaurantController.dart';
-import 'package:flutter_auth/views_model/villeController.dart';
+import 'package:flutter_auth/controllers/productViewController.dart';
+import 'package:flutter_auth/controllers/villeController.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter_auth/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   final session = GetStorage();
-  RestaurantController restaurantController = Get.find();
   VilleController villeController = Get.find();
   ProductViewController pwc = Get.find();
+  CartController cartController = Get.find();
   @override
   Widget build(BuildContext context) {
     if (session.read("villeSelected") == false) {
@@ -34,37 +32,17 @@ class HomeScreen extends StatelessWidget {
       drawer: Drawer(
         child: SideMenuBar(),
       ),
-      body: SafeArea(
+      extendBodyBehindAppBar: true,
+      body: SingleChildScrollView(
         child: Container(
-          color: Colors.white,
+          color: homeBgColor,
           child: Column(
             children: <Widget>[
               SizedBox(
-                  height: 300,
+                  height: MediaQuery.of(context).size.height * .35,
                   width: double.infinity,
                   child: Carousel(
-                    images: [
-                      CustomHero(
-                        image: "images/fish3.jpg",
-                        text: "FLOUKA",
-                        desc: "blabla bla qdsdq qsd qde fqs dqs d",
-                      ),
-                      CustomHero(
-                        image: "images/fish5.jpg",
-                        text: "FLOUKA",
-                        desc: "blabla bla qdsdq qsd qde fqs dqs d",
-                      ),
-                      CustomHero(
-                        image: "images/fish4.jpg",
-                        text: "FLOUKA",
-                        desc: "blabla bla qdsdq qsd qde fqs dqs d",
-                      ),
-                      CustomHero(
-                        image: "images/fish1.jpeg",
-                        text: "FLOUKA",
-                        desc: "blabla bla qdsdq qsd qde fqs dqs d",
-                      ),
-                    ],
+                    images: customHeroList,
                     dotSize: 4.0,
                     dotSpacing: 15.0,
                     indicatorBgPadding: 5.0,

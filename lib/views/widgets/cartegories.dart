@@ -40,7 +40,7 @@ class Categories extends StatelessWidget {
                   ),
                   name: "Frais",
                   svg: "icons/fish.svg",
-                  cat: 1),
+                  cat: 2),
               SizedBox(
                 width: 40,
               ),
@@ -51,7 +51,7 @@ class Categories extends StatelessWidget {
                   ),
                   name: "Congelés",
                   svg: "icons/freezing.svg",
-                  cat: 2),
+                  cat: 1),
             ],
           ),
         ),

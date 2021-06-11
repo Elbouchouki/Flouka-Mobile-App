@@ -25,23 +25,23 @@ class Confirmation extends StatelessWidget {
               Container(
                   width: 200,
                   child: Image(
-                    image: AssetImage("assets/images/send.png"),
+                    image: AssetImage(confirmationIcon),
                   )),
               SizedBox(height: size.height * 0.30),
               Text(
-                "Votre compte a été créé avec succès ",
-                style: TextStyle(fontWeight: FontWeight.normal),
+                topText,
+                style: topTextStyle,
               ),
               Text(
-                "Consulter votre boite E-mail pour obtenir votre mot de passe ",
-                style: TextStyle(fontWeight: FontWeight.normal),
+                bottomText,
+                style: bottomTextStyle,
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: size.height * 0.03),
               RoundedButton(
                 width: 150,
-                color: darkBlueColor,
-                text: "Se connecter",
+                color: buttonColor,
+                text: buttonText,
                 press: () => Get.toNamed("/login"),
               ),
             ],

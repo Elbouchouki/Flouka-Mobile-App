@@ -1,7 +1,10 @@
-import 'package:flutter_auth/views_model/productViewController.dart';
-import 'package:flutter_auth/views_model/restaurantController.dart';
-import 'package:flutter_auth/views_model/villeController.dart';
-import 'package:flutter_auth/views_model/zoneController.dart';
+import 'package:flutter_auth/controllers/cartController.dart';
+import 'package:flutter_auth/controllers/detailsController.dart';
+import 'package:flutter_auth/controllers/productViewController.dart';
+import 'package:flutter_auth/controllers/stockController.dart';
+import 'package:flutter_auth/controllers/villeController.dart';
+import 'package:flutter_auth/controllers/zoneController.dart';
+import 'package:flutter_auth/models/product.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -11,9 +14,12 @@ class HomeBinding implements Bindings {
     final _session = GetStorage();
     _session.writeIfNull("villeSelected", false);
     _session.writeIfNull("zoneSelected", false);
-    Get.lazyPut<RestaurantController>(() => RestaurantController());
+    _session.writeIfNull("cartList", RxList<Product>());
     Get.lazyPut<VilleController>(() => VilleController());
     Get.lazyPut<ZoneController>(() => ZoneController());
     Get.lazyPut<ProductViewController>(() => ProductViewController());
+    Get.lazyPut<CartController>(() => CartController());
+    Get.put<StockController>(StockController());
+    Get.put<DetailsController>(DetailsController());
   }
 }

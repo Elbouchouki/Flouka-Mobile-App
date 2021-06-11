@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/views/widgets/villePopup.dart';
-import 'package:flutter_auth/views_model/villeController.dart';
+import 'package:flutter_auth/controllers/villeController.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -21,8 +21,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Column(
           children: <Widget>[
             Container(
-              color: darkBlueColor,
               height: 40,
+              decoration: BoxDecoration(color: darkBlueColor, boxShadow: [
+                BoxShadow(
+                    spreadRadius: 2,
+                    color: Colors.black.withOpacity(0.6),
+                    blurRadius: 10)
+              ]),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -85,35 +90,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             Container(
-              color: Colors.white,
+              color: Colors.transparent,
               height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
-                    child: (_currentRoute == "/" ||
-                            _currentRoute.contains("/home"))
-                        ? IconButton(
-                            onPressed: () {
-                              homeScreenScaffold.currentState.openDrawer();
-                            },
-                            icon: Icon(
-                              Icons.menu,
-                              color: darkBlueColor,
-                            ))
-                        : Padding(
-                            padding: EdgeInsets.only(left: 5),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: darkBlueColor,
-                              ),
-                            ),
-                          ),
-                  ),
+                      child: IconButton(
+                    onPressed: () {
+                      homeScreenScaffold.currentState.openDrawer();
+                    },
+                    icon: Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                    ),
+                    splashColor: darkBlueColor,
+                  )),
                   Spacer(),
                   Container(
                     child: Row(
@@ -123,7 +115,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         //   onPressed: () => {},
                         // ),
                         IconButton(
-                          icon: Icon(Icons.shopping_cart, color: darkBlueColor),
+                          icon: Icon(Icons.shopping_cart, color: Colors.white),
+                          splashColor: darkBlueColor,
                           onPressed: () => {Get.toNamed("/cart")},
                         ),
                       ],

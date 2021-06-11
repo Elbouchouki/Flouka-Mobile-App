@@ -25,43 +25,35 @@ class LoginScreen extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: size.height * 0.1),
                   Image.asset(
-                    "assets/images/logo.png",
+                    logoFloukaPrimary,
                     height: size.height * 0.12,
                   ),
                   SizedBox(height: size.height * 0.1),
                   RoundedInputField_email(
-                    hintText: "E-mail ou Téléphone",
+                    hintText: logininputEmail,
                     onChanged: (value) {},
                   ),
                   RoundedPasswordField(
+                    hintText: logininputPassword,
                     onChanged: (value) {},
                   ),
                   SizedBox(height: size.height * 0.05),
                   RoundedButton(
                     width: 150,
-                    color: darkBlueColor,
-                    text: "Se connecter",
+                    color: loginButtonColor,
+                    text: loginButton,
                     press: () => Get.offAllNamed("/home"),
                   ),
                   SizedBox(height: size.height * 0.30),
                   Text(
-                    "Vous n'être pas encore inscrit sur Flouka ? ",
-                    style: TextStyle(color: Colors.black),
+                    loginBottomText,
+                    style: loginBottomTextStyle,
                   ),
                   GestureDetector(
                     onTap: () => Get.toNamed("/signup"),
-                    child: Text(
-                      " Inscrivez-vous",
-                      style: TextStyle(
-                        color: darkBlueColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child:
+                        Text(loginBottomButton, style: loginBottomButtomStyle),
                   ),
-                  Divider(
-                    color: Colors.white,
-                    height: 20,
-                  )
                 ]),
           ),
         ),

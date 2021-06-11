@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:get/get.dart';
 
 class SideMenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool userLoggedIn = true;
-
     return Scaffold(
         body: Container(
             padding: EdgeInsets.all(50),
@@ -20,7 +20,9 @@ class SideMenuBar extends StatelessWidget {
                     Image.asset("images/logowhite.png"),
                     SizedBox(height: 80),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(ModalRoute.of(context).settings.name);
+                        },
                         child: Row(
                           children: [
                             Icon(Icons.home, color: Colors.white, size: 20),

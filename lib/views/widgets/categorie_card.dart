@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/controllers/stockController.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CategoryCard extends StatelessWidget {
+  final _session = GetStorage();
+  StockController stockController = Get.find();
   String name;
   Image image;
   int cat;
@@ -14,42 +18,56 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed("/products", arguments: [cat, name]),
+      onTap: () {
+        stockController.changeStockStates(cat);
+        Get.toNamed("/products", arguments: [cat, name, svg]);
+      },
       child: Column(
         children: [
-          ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Stack(
-                children: [
-                  Container(
-                    width: 120,
-                    height: 120,
-                    child: image,
-                  ),
-                  Container(
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.bottomRight,
-                            colors: [
-                          Colors.black.withOpacity(.4),
-                          Colors.black.withOpacity(.2),
-                        ])),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SvgPicture.asset(
-                          svg,
-                          width: 50,
-                          height: 50,
-                          color: Colors.white,
-                        )
-                      ],
-                    ),
-                  ),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.grey,
+                boxShadow: [
+                  BoxShadow(
+                      spreadRadius: 2,
+                      color: Colors.black.withOpacity(0.6),
+                      blurRadius: 10)
                 ],
-              )),
+                borderRadius: BorderRadius.circular(30)),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.width * 0.3,
+                      child: image,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.width * 0.3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomRight,
+                              colors: [
+                            Colors.black.withOpacity(.4),
+                            Colors.black.withOpacity(.2),
+                          ])),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SvgPicture.asset(
+                            svg,
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            height: MediaQuery.of(context).size.width * 0.15,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+          ),
           SizedBox(
             height: 5,
           ),

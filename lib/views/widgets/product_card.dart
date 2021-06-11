@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/models/restaurantModel.dart';
+import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/models/produit.dart';
+import 'package:flutter_auth/models/qualite.dart';
 
-class CategoryCard extends StatelessWidget {
-  Restaurant restaurant;
+class ProductCard extends StatelessWidget {
+  Produit produit;
   Function onCardClick;
 
-  CategoryCard({this.restaurant, this.onCardClick});
+  ProductCard({this.produit, this.onCardClick});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,14 @@ class CategoryCard extends StatelessWidget {
             children: [
               Positioned.fill(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(this.restaurant.logo, fit: BoxFit.cover),
-                ),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image(
+                        image: NetworkImage((imgDomaine +
+                            this.produit.photoPrincipale.substring(6))),
+                        fit: BoxFit.cover)
+                    // (imgDomaine + this.produit.photoPrincipale.substring(6)),
+
+                    ),
               ),
               Positioned(
                 bottom: 0,
@@ -49,7 +56,7 @@ class CategoryCard extends StatelessWidget {
                   child: Row(
                     children: [
                       SizedBox(width: 10),
-                      Text(this.restaurant.name,
+                      Text(this.produit.nom,
                           style: TextStyle(color: Colors.white, fontSize: 25))
                     ],
                   ),
