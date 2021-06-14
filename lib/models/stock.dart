@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_auth/models/qualite.dart';
 import 'package:flutter_auth/models/stockClass.dart';
 import 'package:flutter_auth/models/tranche.dart';
 
@@ -10,7 +9,6 @@ class Stock {
 
   static String stockToJson(List<Stock> data) =>
       json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
   Stock({
     this.id,
     this.stocksId,
@@ -54,7 +52,6 @@ class Stock {
     this.modePreparationId,
     this.stockLignesId,
     this.stock,
-    this.qualite,
     this.tranche,
   });
 
@@ -100,7 +97,6 @@ class Stock {
   int modePreparationId;
   int stockLignesId;
   StockClass stock;
-  Qualite qualite;
   Tranche tranche;
 
   factory Stock.fromJson(Map<String, dynamic> json) => Stock(
@@ -146,7 +142,6 @@ class Stock {
         modePreparationId: json["mode_preparation_id"],
         stockLignesId: json["stock_lignes_id"],
         stock: StockClass.fromJson(json["stock"]),
-        qualite: Qualite.fromJson(json["qualite"]),
         tranche: Tranche.fromJson(json["tranche"]),
       );
 
@@ -193,7 +188,6 @@ class Stock {
         "mode_preparation_id": modePreparationId,
         "stock_lignes_id": stockLignesId,
         "stock": stock.toJson(),
-        "qualite": qualite.toJson(),
         "tranche": tranche.toJson(),
       };
 }

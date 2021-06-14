@@ -8,7 +8,6 @@ import 'package:flutter_auth/views/widgets/product_card.dart';
 import 'package:flutter_auth/views/widgets/sous_categories.dart';
 import 'package:flutter_auth/views/widgets/villePopup.dart';
 import 'package:flutter_auth/controllers/villeController.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -171,14 +170,11 @@ class ProductView extends StatelessWidget {
                           return ZoomIn(
                               duration: Duration(milliseconds: 100 * index),
                               child: ProductCard(
-                                  produit: stockController
-                                      .products.value[index].stock.produit,
+                                  produit:
+                                      stockController.products.value[index],
                                   onCardClick: () {
                                     detailsController.changeDetailsState(
-                                      stockController
-                                          .products.value[index].stock.produit,
-                                      stockController.products.value[index]
-                                          .stock.categorie,
+                                      stockController.products.value[index],
                                     );
                                     Get.toNamed("/details");
                                   }));

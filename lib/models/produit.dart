@@ -1,4 +1,5 @@
-import 'package:flutter_auth/models/qualite.dart';
+import 'package:flutter_auth/models/categorie.dart';
+import 'package:flutter_auth/models/photo.dart';
 
 class Produit {
   Produit({
@@ -17,6 +18,7 @@ class Produit {
     this.uniteId,
     this.modePreparationId,
     this.unite,
+    this.photos,
   });
 
   int id;
@@ -34,7 +36,8 @@ class Produit {
   int uniteId;
   int modePreparationId;
 
-  Qualite unite;
+  Categorie unite;
+  List<Photo> photos;
 
   factory Produit.fromJson(Map<String, dynamic> json) => Produit(
         id: json["id"],
@@ -51,7 +54,8 @@ class Produit {
         modeVenteId: json["mode_vente_id"],
         uniteId: json["unite_id"],
         modePreparationId: json["mode_preparation_id"],
-        unite: Qualite.fromJson(json["unite"]),
+        unite: Categorie.fromJson(json["unite"]),
+        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -70,5 +74,6 @@ class Produit {
         "unite_id": uniteId,
         "mode_preparation_id": modePreparationId,
         "unite": unite.toJson(),
+        "photos": List<dynamic>.from(photos.map((x) => x.toJson())),
       };
 }

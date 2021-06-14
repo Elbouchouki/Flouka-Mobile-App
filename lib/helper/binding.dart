@@ -4,7 +4,7 @@ import 'package:flutter_auth/controllers/productViewController.dart';
 import 'package:flutter_auth/controllers/stockController.dart';
 import 'package:flutter_auth/controllers/villeController.dart';
 import 'package:flutter_auth/controllers/zoneController.dart';
-import 'package:flutter_auth/models/product.dart';
+import 'package:flutter_auth/models/produit.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -14,7 +14,7 @@ class HomeBinding implements Bindings {
     final _session = GetStorage();
     _session.writeIfNull("villeSelected", false);
     _session.writeIfNull("zoneSelected", false);
-    _session.writeIfNull("cartList", RxList<Product>());
+    _session.writeIfNull("cartList", RxList<Produit>());
     Get.lazyPut<VilleController>(() => VilleController());
     Get.lazyPut<ZoneController>(() => ZoneController());
     Get.lazyPut<ProductViewController>(() => ProductViewController());

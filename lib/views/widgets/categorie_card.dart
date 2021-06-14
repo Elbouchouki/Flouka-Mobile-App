@@ -3,10 +3,8 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/controllers/stockController.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class CategoryCard extends StatelessWidget {
-  final _session = GetStorage();
   StockController stockController = Get.find();
   String name;
   Image image;

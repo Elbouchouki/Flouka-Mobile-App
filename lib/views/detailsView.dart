@@ -2,19 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/controllers/cartController.dart';
 import 'package:flutter_auth/controllers/detailsController.dart';
-import 'package:flutter_auth/models/product.dart';
+import 'package:flutter_auth/controllers/productViewController.dart';
 import 'package:flutter_auth/models/produit.dart';
-import 'package:flutter_auth/models/qualite.dart';
 import 'package:get/get.dart';
 
 class Details extends StatelessWidget {
   DetailsController detailsController = Get.find();
   CartController cartController = Get.find();
+  ProductViewController pwc = Get.find();
+  String chooseDescription() {
+    switch (detailsController.product.value.categorieId) {
+      case 1:
+        return detailsController.product.value.stock.produit.descriptionC;
+        break;
+      case 2:
+        return detailsController.product.value.stock.produit.descriptionF;
+        break;
+      default:
+        return ("description Epicerie ..... (pas encore faite)");
+    }
+  }
+
+  String chooseSousCategorie() {
+    return pwc.listOfMenu[detailsController.product.value.sousCategorieId];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -81,8 +99,8 @@ class Details extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
-                              child:
-                                  Text(detailsController.categorie.value.nom),
+                              child: Text(detailsController
+                                  .product.value.stock.categorie.nom),
                             ),
                           ),
                           SizedBox(
@@ -94,7 +112,7 @@ class Details extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
-                              child: Text("Poissons Nobles"),
+                              child: Text(chooseSousCategorie()),
                             ),
                           ),
                           SizedBox(
@@ -123,7 +141,7 @@ class Details extends StatelessWidget {
                         height: 7,
                       ),
                       Text(
-                        "Poisson marin de couleur gris argenté, au corps ovale comprimé latéralement et au front bombé, broyeur de coquillages grâce à une forte dentition, vivant essentiellement dans les eaux chaudes et tempérées de l'Atlantique Est et de la Méditerranée (rare en mer Noire), dit daurade royale.",
+                        chooseDescription(),
                         style: TextStyle(height: 1.6),
                       ),
                     ],
@@ -147,15 +165,6 @@ class Details extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30)),
                     color: darkBlueColor,
                     onPressed: () {
-                      cartController.addProduct(Product(
-                        id: 1,
-                        images: [
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLX_fmurHumo9VwXlbmGXt31o9M32R7wo_gEJ41I_fsbb98KkaLBvsczpOiAXL4Rlzva8&usqp=CAU"
-                        ],
-                        name: "qsdqsdf",
-                        price: 50.50,
-                        qte: "5.800 Kg",
-                      ));
                       Get.snackbar("Notification", "Produit Ajouté.",
                           backgroundColor: Colors.white,
                           titleText: Text("Notification"),

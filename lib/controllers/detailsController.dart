@@ -1,13 +1,12 @@
-import 'package:flutter_auth/models/produit.dart';
-import 'package:flutter_auth/models/qualite.dart';
+import 'package:flutter_auth/models/categorie.dart';
+import 'package:flutter_auth/models/stock.dart';
 import 'package:get/get.dart';
 
 class DetailsController extends GetxController {
-  var product = Produit().obs;
-  var categorie = Qualite().obs;
-  void changeDetailsState(Produit p, Qualite q) {
+  var product = Stock().obs;
+  var categorie = Categorie().obs;
+  void changeDetailsState(Stock p) {
     product.value = p;
-    categorie.value = q;
   }
 
   @override

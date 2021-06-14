@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/views/widgets/categorie_card.dart';
-import 'package:get/get.dart';
 
 class Categories extends StatelessWidget {
   @override

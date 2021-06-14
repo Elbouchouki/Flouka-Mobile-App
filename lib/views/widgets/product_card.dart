@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
-import 'package:flutter_auth/models/produit.dart';
-import 'package:flutter_auth/models/qualite.dart';
+import 'package:flutter_auth/models/stock.dart';
 
 class ProductCard extends StatelessWidget {
-  Produit produit;
+  Stock produit;
   Function onCardClick;
 
   ProductCard({this.produit, this.onCardClick});

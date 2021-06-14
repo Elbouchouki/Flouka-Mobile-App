@@ -175,7 +175,7 @@ class CartView extends StatelessWidget {
                                                         image: NetworkImage(
                                                             cartController
                                                                 .cartList[index]
-                                                                .images[0]),
+                                                                .photoPrincipale),
                                                         fit: BoxFit.fill)),
                                               ),
                                             ),
@@ -192,7 +192,7 @@ class CartView extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          cartController.cartList[index].name,
+                                          cartController.cartList[index].nom,
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w700),
@@ -217,7 +217,7 @@ class CartView extends StatelessWidget {
                                             ),
                                             Text(
                                               cartController
-                                                  .cartList[index].price
+                                                  .cartList[index].prixN
                                                   .toString(),
                                               style: TextStyle(
                                                   color: darkBlueColor,

@@ -1,6 +1,6 @@
+import 'package:flutter_auth/models/categorie.dart';
 import 'package:flutter_auth/models/depot.dart';
 import 'package:flutter_auth/models/produit.dart';
-import 'package:flutter_auth/models/qualite.dart';
 
 class StockClass {
   StockClass({
@@ -15,6 +15,8 @@ class StockClass {
     this.categorieId,
     this.produitId,
     this.depotId,
+    this.createdAt,
+    this.updatedAt,
     this.depot,
     this.produit,
     this.categorie,
@@ -31,10 +33,11 @@ class StockClass {
   int categorieId;
   int produitId;
   int depotId;
-
+  DateTime createdAt;
+  DateTime updatedAt;
   Depot depot;
   Produit produit;
-  Qualite categorie;
+  Categorie categorie;
 
   factory StockClass.fromJson(Map<String, dynamic> json) => StockClass(
         id: json["id"],
@@ -50,7 +53,7 @@ class StockClass {
         depotId: json["depot_id"],
         depot: Depot.fromJson(json["depot"]),
         produit: Produit.fromJson(json["produit"]),
-        categorie: Qualite.fromJson(json["categorie"]),
+        categorie: Categorie.fromJson(json["categorie"]),
       );
 
   Map<String, dynamic> toJson() => {
