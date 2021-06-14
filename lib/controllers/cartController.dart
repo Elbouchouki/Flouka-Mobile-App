@@ -1,5 +1,4 @@
 import 'package:flutter_auth/models/cart.dart';
-import 'package:flutter_auth/models/produit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +27,6 @@ class CartController extends GetxController {
   void addProduct(Cart cart) {
     _cartList.add(cart);
     calculateTotal();
-
     _sessionSave();
   }
 

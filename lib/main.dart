@@ -15,7 +15,7 @@ void main() async {
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: "/",
+    initialRoute: "/login",
     initialBinding: HomeBinding(),
     getPages: [
       GetPage(

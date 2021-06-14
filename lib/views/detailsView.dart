@@ -4,6 +4,7 @@ import 'package:flutter_auth/controllers/cartController.dart';
 import 'package:flutter_auth/controllers/detailsController.dart';
 import 'package:flutter_auth/controllers/productViewController.dart';
 import 'package:flutter_auth/helper/heper.dart';
+import 'package:flutter_auth/views/widgets/product_images.dart';
 import 'package:get/get.dart';
 
 class Details extends StatelessWidget {
@@ -52,21 +53,28 @@ class Details extends StatelessWidget {
         child: Obx(
           () => Stack(
             children: <Widget>[
-              Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.3,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(Helper.imageFormatter(
-                          detailsController.product.value.photoPrincipale)),
-                      fit: BoxFit.cover),
-                ),
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 30),
+              Stack(
+                children: [
+                  ProductImages(
+                    product: detailsController.product.value.stock.produit,
                   ),
-                ),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(Helper.imageFormatter(
+                              detailsController.product.value.photoPrincipale)),
+                          fit: BoxFit.cover),
+                    ),
+                    child: SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 30),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Container(
                 margin: EdgeInsets.only(

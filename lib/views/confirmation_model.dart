@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
-import 'package:flutter_auth/views/components/rounded_button.dart';
+import 'package:flutter_auth/views/widgets/rounded_button.dart';
 import 'package:get/get.dart';
 
 class Confirmation extends StatelessWidget {
@@ -39,11 +39,12 @@ class Confirmation extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.03),
               RoundedButton(
-                width: 150,
-                color: buttonColor,
-                text: buttonText,
-                press: () => Get.toNamed("/login"),
-              ),
+                  width: 150,
+                  color: buttonColor,
+                  text: buttonText,
+                  press: () {
+                    Navigator.of(context).pop();
+                  }),
             ],
           ),
         ),

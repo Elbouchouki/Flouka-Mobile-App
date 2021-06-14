@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
-import 'package:flutter_auth/views/components/rounded_button.dart';
+import 'package:flutter_auth/views/widgets/rounded_button.dart';
 import 'package:flutter_auth/controllers/villeController.dart';
 import 'package:flutter_auth/controllers/zoneController.dart';
 import 'package:get/get.dart';
