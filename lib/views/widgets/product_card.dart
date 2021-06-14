@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/models/stock.dart';
+import 'package:flutter_auth/helper/heper.dart';
 
 class ProductCard extends StatelessWidget {
   Stock produit;
@@ -23,8 +23,8 @@ class ProductCard extends StatelessWidget {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image(
-                        image: NetworkImage((imgDomaine +
-                            this.produit.photoPrincipale.substring(6))),
+                        image: NetworkImage(Helper.imageFormatter(
+                            this.produit.photoPrincipale)),
                         fit: BoxFit.cover)
                     // (imgDomaine + this.produit.photoPrincipale.substring(6)),
 

@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_auth/models/produit.dart';
 import 'package:flutter_auth/models/stock.dart';
 import 'package:flutter_auth/services/apiFlouka.dart';
+import 'package:flutter_auth/views/widgets/cartegories.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

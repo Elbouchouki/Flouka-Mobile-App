@@ -175,6 +175,7 @@ class CartView extends StatelessWidget {
                                                         image: NetworkImage(
                                                             cartController
                                                                 .cartList[index]
+                                                                .produit
                                                                 .photoPrincipale),
                                                         fit: BoxFit.fill)),
                                               ),
@@ -192,7 +193,8 @@ class CartView extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          cartController.cartList[index].nom,
+                                          cartController
+                                              .cartList[index].produit.nom,
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w700),
@@ -205,8 +207,8 @@ class CartView extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Text(
-                                              cartController
-                                                      .cartList[index].qte +
+                                              cartController.cartList[index].qte
+                                                      .toString() +
                                                   " |",
                                               style: TextStyle(
                                                   fontSize: 15,
@@ -217,7 +219,7 @@ class CartView extends StatelessWidget {
                                             ),
                                             Text(
                                               cartController
-                                                  .cartList[index].prixN
+                                                  .cartList[index].totalPrice
                                                   .toString(),
                                               style: TextStyle(
                                                   color: darkBlueColor,

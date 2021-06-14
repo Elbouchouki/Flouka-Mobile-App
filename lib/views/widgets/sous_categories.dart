@@ -19,7 +19,7 @@ class SousCategories extends StatelessWidget {
                 topLeft: Radius.circular(30), topRight: Radius.circular(30))),
         height: 55,
         child: ListView.builder(
-            itemCount: pwc.listOfMenu.length,
+            itemCount: pwc.sousCategories.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
               return JelloIn(
@@ -46,7 +46,7 @@ class SousCategories extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
                               child: Text(
-                                pwc.listOfMenu[i],
+                                pwc.sousCategories[i].nom,
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,

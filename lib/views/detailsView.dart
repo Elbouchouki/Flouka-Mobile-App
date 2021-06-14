@@ -3,7 +3,7 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/controllers/cartController.dart';
 import 'package:flutter_auth/controllers/detailsController.dart';
 import 'package:flutter_auth/controllers/productViewController.dart';
-import 'package:flutter_auth/models/produit.dart';
+import 'package:flutter_auth/helper/heper.dart';
 import 'package:get/get.dart';
 
 class Details extends StatelessWidget {
@@ -24,7 +24,11 @@ class Details extends StatelessWidget {
   }
 
   String chooseSousCategorie() {
-    return pwc.listOfMenu[detailsController.product.value.sousCategorieId];
+    return pwc.sousCategories
+        .where((sousCat) => (sousCat.id.toInt() ==
+            [detailsController.product.value.sousCategorieId.toInt()]))
+        .toList()[0]
+        .nom;
   }
 
   @override
@@ -53,9 +57,8 @@ class Details extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage((imgDomaine +
-                          detailsController.product.value.photoPrincipale
-                              .substring(6))),
+                      image: NetworkImage(Helper.imageFormatter(
+                          detailsController.product.value.photoPrincipale)),
                       fit: BoxFit.cover),
                 ),
                 child: SafeArea(
@@ -67,7 +70,7 @@ class Details extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.25),
+                    top: MediaQuery.of(context).size.height * 0.3),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Colors.white,
