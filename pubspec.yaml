@@ -33,7 +33,6 @@ dependencies:
   flutter_svg: ^0.22.0
   dio:
   collection: ^1.14.13
-
   google_fonts: ^2.1.0
   animate_do: ^1.7.2
 

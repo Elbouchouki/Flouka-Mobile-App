@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter_auth/models/produit.dart';
 import 'package:flutter_auth/models/stock.dart';
 import 'package:flutter_auth/services/apiFlouka.dart';
-import 'package:flutter_auth/views/widgets/cartegories.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -33,8 +32,8 @@ class StockController extends GetxController {
         .produit;
   }
 
-  void fetchData() async {
-    await ApiFlouka.getStock(5).then((result) {
+  void fetchData(int villeId) async {
+    await ApiFlouka.getStock(villeId).then((result) {
       stock.value = result
           .where((element) =>
               (element.active == true && element.stock.produit.active == true))
@@ -44,7 +43,6 @@ class StockController extends GetxController {
 
   @override
   void onInit() {
-    fetchData();
     super.onInit();
   }
 }

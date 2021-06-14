@@ -176,6 +176,7 @@ class ProductView extends StatelessWidget {
                                     detailsController.changeDetailsState(
                                       stockController.products.value[index],
                                     );
+                                    print(detailsController.listProducts.value);
                                     Get.toNamed("/details");
                                   }));
                         },

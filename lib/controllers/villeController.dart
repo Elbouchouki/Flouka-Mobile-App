@@ -21,6 +21,7 @@ class VilleController extends GetxController {
     session.write("villeSelected", true);
     session.write("villeId", selectedVille.value.id);
     session.write("villeName", selectedVille.value.nom);
+    _stockController.fetchData(selectedVille.value.id);
   }
 
   @override
@@ -29,6 +30,7 @@ class VilleController extends GetxController {
       isVilleSelected.value = session.read("villeSelected");
       selectedVille.value.id = session.read("villeId");
       selectedVille.value.nom = session.read("villeName");
+      _stockController.fetchData(session.read("villeId"));
     }
     ApiFlouka.getVilles().then((result) {
       villes.value =

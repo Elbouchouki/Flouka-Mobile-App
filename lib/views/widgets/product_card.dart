@@ -15,6 +15,14 @@ class ProductCard extends StatelessWidget {
         this.onCardClick();
       },
       child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  spreadRadius: 2,
+                  color: Colors.black.withOpacity(0.3),
+                  blurRadius: 15)
+            ],
+          ),
           margin: EdgeInsets.all(20),
           height: 150,
           child: Stack(
