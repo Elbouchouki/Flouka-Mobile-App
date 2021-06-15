@@ -15,6 +15,7 @@ class VilleController extends GetxController {
   void changeSelectedVille(id) {
     selectedVille.value = villes.firstWhere((v) => v.id == int.parse(id));
     isVilleSelected.value = true;
+    villes.refresh();
   }
 
   void save() {
@@ -35,6 +36,7 @@ class VilleController extends GetxController {
     ApiFlouka.getVilles().then((result) {
       villes.value =
           result.where((element) => element.livraison == true).toList();
+      villes.refresh();
     });
     super.onInit();
   }

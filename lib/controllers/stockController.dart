@@ -22,6 +22,13 @@ class StockController extends GetxController {
     groupBy(currentStock.value, (s) => s.id).forEach((key, value) {
       products.value.add(value[0]);
     });
+    _refresh();
+  }
+
+  _refresh() {
+    stock.refresh();
+    currentStock.refresh();
+    products.refresh();
   }
 
   Produit getProduct(int id) {
@@ -38,6 +45,7 @@ class StockController extends GetxController {
           .where((element) =>
               (element.active == true && element.stock.produit.active == true))
           .toList();
+      _refresh();
     });
   }
 

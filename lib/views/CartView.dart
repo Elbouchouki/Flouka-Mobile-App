@@ -175,7 +175,7 @@ class CartView extends StatelessWidget {
                                                         image: NetworkImage(
                                                             cartController
                                                                 .cartList[index]
-                                                                .produit
+                                                                .produits[0]
                                                                 .photoPrincipale),
                                                         fit: BoxFit.fill)),
                                               ),
@@ -194,7 +194,7 @@ class CartView extends StatelessWidget {
                                       children: <Widget>[
                                         Text(
                                           cartController
-                                              .cartList[index].produit.nom,
+                                              .cartList[index].produits[0].nom,
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w700),

@@ -19,7 +19,7 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
-    _cartList.value = Cart.cartFromJson(_session.read("cartList").toString());
+    // _cartList.value = Cart.cartFromJson(_session.read("cartList").toString());
     calculateTotal();
     super.onInit();
   }
@@ -46,6 +46,6 @@ class CartController extends GetxController {
   }
 
   void _sessionSave() {
-    _session.write("cartList", Cart.cartToJson(_cartList.value));
+    // _session.write("cartList", Cart.cartToJson(_cartList.value));
   }
 }

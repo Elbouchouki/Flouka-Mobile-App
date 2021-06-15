@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/controllers/detailsController.dart';
 import 'package:flutter_auth/models/stock.dart';
+import 'package:get/get.dart';
 
 class Tranche extends StatelessWidget {
+  DetailsController detailsController = Get.find();
   Stock produit;
-  Tranche({this.produit});
+  int index;
+  Tranche({this.index, this.produit});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +49,9 @@ class Tranche extends StatelessWidget {
                           height: 40,
                           color: Colors.blue,
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                detailsController.decrementQte(this.index);
+                              },
                               icon: Icon(
                                 Icons.remove_rounded,
                                 color: Colors.white,
@@ -56,8 +63,13 @@ class Tranche extends StatelessWidget {
                           color: Color(0xffE8E8E8),
                           child: Padding(
                             padding: EdgeInsets.all(10),
-                            child: Text(
-                              "Qte",
+                            child: Obx(
+                              () => Text(
+                                (detailsController.qte.value[index][0] == 0)
+                                    ? "Qte"
+                                    : detailsController.qte.value[index][0]
+                                        .toString(),
+                              ),
                             ),
                           )),
                       Container(
@@ -79,7 +91,9 @@ class Tranche extends StatelessWidget {
                           height: 40,
                           color: Colors.blue,
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                detailsController.incrementQte(this.index);
+                              },
                               icon: Icon(
                                 Icons.add_rounded,
                                 color: Colors.white,

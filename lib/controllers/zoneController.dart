@@ -13,8 +13,13 @@ class ZoneController extends GetxController {
   var isZoneSelected = false.obs;
   void changeSelectedZone(id) {
     selectedZone.value = filtredZones.firstWhere((v) => v.id == int.parse(id));
-
     isZoneSelected.value = true;
+    _refresh();
+  }
+
+  _refresh() {
+    filtredZones.refresh();
+    zones.refresh();
   }
 
   void clearZone() {
@@ -32,6 +37,7 @@ class ZoneController extends GetxController {
     filtredZones.value = zones
         .where((element) => element.villeId == int.parse(villeId))
         .toList();
+    _refresh();
   }
 
   @override
@@ -43,6 +49,7 @@ class ZoneController extends GetxController {
         selectedZone.value.nom = _session.read("zoneName");
         isZoneSelected.value = _session.read("zoneSelected");
         filterZones(_session.read("villeId").toString());
+        _refresh();
       }
     });
 

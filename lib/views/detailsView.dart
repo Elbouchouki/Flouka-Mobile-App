@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/controllers/cartController.dart';
 import 'package:flutter_auth/controllers/detailsController.dart';
@@ -12,12 +13,14 @@ class Details extends StatelessWidget {
   CartController cartController = Get.find();
   ProductViewController pwc = Get.find();
   String chooseDescription() {
-    switch (detailsController.product.value.categorieId) {
+    switch (detailsController.listProducts.value[0][0].categorieId) {
       case 1:
-        return detailsController.product.value.stock.produit.descriptionC;
+        return detailsController
+            .listProducts.value[0][0].stock.produit.descriptionC;
         break;
       case 2:
-        return detailsController.product.value.stock.produit.descriptionF;
+        return detailsController
+            .listProducts.value[0][0].stock.produit.descriptionF;
         break;
       default:
         return ("description Epicerie ..... (pas encore faite)");
@@ -26,8 +29,8 @@ class Details extends StatelessWidget {
 
   String chooseSousCategorie() {
     return pwc.sousCategories
-        .where((sousCat) =>
-            (sousCat.id == detailsController.product.value.sousCategorieId))
+        .where((sousCat) => (sousCat.id ==
+            detailsController.listProducts.value[0][0].sousCategorieId))
         .toList()[0]
         .nom;
   }
@@ -49,9 +52,9 @@ class Details extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
       ),
-      body: SingleChildScrollView(
-        child: Obx(
-          () => Stack(
+      body: Obx(
+        () => SingleChildScrollView(
+          child: Stack(
             children: <Widget>[
               Container(
                 width: double.infinity,
@@ -59,7 +62,8 @@ class Details extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(Helper.imageFormatter(
-                          detailsController.product.value.photoPrincipale)),
+                          detailsController
+                              .listProducts.value[0][0].photoPrincipale)),
                       fit: BoxFit.cover),
                 ),
                 child: SafeArea(
@@ -96,51 +100,54 @@ class Details extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          detailsController.product.value.nom,
+                          detailsController.listProducts.value[0][0].nom,
                           style: TextStyle(fontSize: 20, height: 1.5),
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Text(detailsController.listProducts
+                                      .value[0][0].stock.categorie.nom),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Text(chooseSousCategorie()),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
                                   border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child: Text(detailsController
-                                    .product.value.stock.categorie.nom),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Text(detailsController
+                                      .listProducts.value[0][0].nom),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child: Text(chooseSousCategorie()),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child:
-                                    Text(detailsController.product.value.nom),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 30,
@@ -165,12 +172,14 @@ class Details extends StatelessWidget {
                               shrinkWrap: true,
                               itemCount:
                                   detailsController.listProducts.value.length,
-                              itemBuilder: (BuildContext ctx, int index) {
+                              itemBuilder: (BuildContext ctx, int i) {
                                 return Padding(
                                   padding: EdgeInsets.only(top: 10, bottom: 10),
                                   child: Tranche(
-                                      produit: detailsController
-                                          .listProducts[index]),
+                                    index: i,
+                                    produit: detailsController.listProducts[i]
+                                        [0],
+                                  ),
                                 );
                               },
                             ),
@@ -187,47 +196,64 @@ class Details extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 0,
-        child: Container(
-          height: 80,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 100, right: 100, top: 20),
-                child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    color: darkBlueColor,
-                    onPressed: () {
-                      Get.snackbar("Notification", "Produit Ajouté.",
-                          backgroundColor: Colors.white,
-                          titleText: Text("Notification"),
-                          colorText: darkBlueColor,
-                          snackPosition: SnackPosition.TOP,
-                          boxShadows: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                color: Colors.black.withOpacity(0.6),
-                                blurRadius: 10)
-                          ],
-                          icon: Icon(Icons.notifications),
-                          shouldIconPulse: true,
-                          margin: EdgeInsets.all(10));
-                    },
-                    child: Container(
-                      height: 50,
-                      child: Center(
-                        child: Text(
-                          "Ajouter au Panier",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          child: Container(
+              height: 60,
+              child: Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [Text("Total :"), Text(" 2450.00 DH")],
                         ),
                       ),
-                    )),
-              )
-            ],
-          ),
+                    ),
+                    Spacer(),
+                    FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        color: darkBlueColor,
+                        onPressed: () {
+                          print(detailsController.total.value.toString());
+                          Get.snackbar("Notification", "Produit Ajouté.",
+                              backgroundColor: Colors.white,
+                              titleText: Text("Notification"),
+                              colorText: darkBlueColor,
+                              snackPosition: SnackPosition.TOP,
+                              boxShadows: [
+                                BoxShadow(
+                                    spreadRadius: 2,
+                                    color: Colors.black.withOpacity(0.6),
+                                    blurRadius: 10)
+                              ],
+                              icon: Icon(Icons.notifications),
+                              shouldIconPulse: true,
+                              margin: EdgeInsets.all(10));
+                        },
+                        child: Container(
+                          height: 50,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            child: Center(
+                              child: Text(
+                                "Ajouter au Panier",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
+              )),
         ),
       ),
     );
