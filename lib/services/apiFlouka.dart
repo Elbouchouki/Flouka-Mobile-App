@@ -3,7 +3,6 @@ import 'package:flutter_auth/models/sousCategorie.dart';
 import 'package:flutter_auth/models/stock.dart';
 import 'package:flutter_auth/models/ville.dart';
 import 'package:flutter_auth/models/zoneModel.dart';
-import 'package:flutter_auth/views/widgets/sous_categories.dart';
 
 class ApiFlouka {
   static const String villes = 'https://profondesolution.online/api/villes';

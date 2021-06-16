@@ -19,13 +19,27 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
-    // _cartList.value = Cart.cartFromJson(_session.read("cartList").toString());
+    // _cartList.value = _session.read("cartList");
     calculateTotal();
     super.onInit();
   }
 
   void addProduct(Cart cart) {
-    _cartList.add(cart);
+    if (_cartList.value.length == 0) {
+      _cartList.add(cart);
+      calculateTotal();
+      _sessionSave();
+      return;
+    }
+    _cartList.forEach((element) {
+      if (element.id == cart.id) {
+        element.qte += cart.qte;
+        element.totalPrice += cart.totalPrice;
+      } else {
+        _cartList.add(cart);
+      }
+    });
+    print(_cartList.value);
     calculateTotal();
     _sessionSave();
   }
@@ -46,6 +60,6 @@ class CartController extends GetxController {
   }
 
   void _sessionSave() {
-    // _session.write("cartList", Cart.cartToJson(_cartList.value));
+    // _session.write("cartList", _cartList.value);
   }
 }

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/controllers/cartController.dart';
+import 'package:flutter_auth/helper/heper.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
@@ -173,10 +174,13 @@ class CartView extends StatelessWidget {
                                                             30),
                                                     image: DecorationImage(
                                                         image: NetworkImage(
-                                                            cartController
-                                                                .cartList[index]
-                                                                .produits[0]
-                                                                .photoPrincipale),
+                                                          Helper.imageFormatter(
+                                                              cartController
+                                                                  .cartList[
+                                                                      index]
+                                                                  .produits[0]
+                                                                  .photoPrincipale),
+                                                        ),
                                                         fit: BoxFit.fill)),
                                               ),
                                             ),
@@ -207,7 +211,21 @@ class CartView extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Text(
-                                              cartController.cartList[index].qte
+                                              cartController.cartList[index]
+                                                      .produits[0].tranche.nom
+                                                      .toString() +
+                                                  " |",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              "x" +
+                                                  cartController
+                                                      .cartList[index].qte
                                                       .toString() +
                                                   " |",
                                               style: TextStyle(

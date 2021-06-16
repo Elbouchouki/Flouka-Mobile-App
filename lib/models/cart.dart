@@ -6,12 +6,12 @@ class Cart {
   List<Stock> produits;
   int qte;
   double totalPrice;
-
+  String id;
   List<Stock> get getProduit => this.produits;
-
   int get getQte => this.qte;
   double get getTotalPrice => this.totalPrice;
-  Cart({this.produits, this.qte, this.totalPrice});
+  Cart({this.id, this.produits, this.qte, this.totalPrice});
+
   // factory Cart.fromJson(Map<String, dynamic> json) => Cart(
   //       produit: Stock.fromJson(json["produit"]),
   //       qte: json["qte"],

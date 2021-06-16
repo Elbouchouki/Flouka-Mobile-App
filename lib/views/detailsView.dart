@@ -210,7 +210,20 @@ class Details extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Row(
-                          children: [Text("Total :"), Text(" 2450.00 DH")],
+                          children: [
+                            Text("Total : ",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: darkBlueColor)),
+                            Obx(() => Text(
+                                detailsController.total.value.toString() +
+                                    " DH",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: darkGray)))
+                          ],
                         ),
                       ),
                     ),
@@ -220,7 +233,7 @@ class Details extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         color: darkBlueColor,
                         onPressed: () {
-                          print(detailsController.total.value.toString());
+                          detailsController.addToCart();
                           Get.snackbar("Notification", "Produit Ajouté.",
                               backgroundColor: Colors.white,
                               titleText: Text("Notification"),
