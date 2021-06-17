@@ -10,9 +10,10 @@ class DetailsController extends GetxController {
   CartController cartController = Get.find();
   var listProducts = List<List<Stock>>().obs;
   var qte = List<List<int>>().obs;
-
   var total = 0.0.obs;
+  var recentStock = Stock().obs;
   void changeDetailsState(Stock p) {
+    recentStock.value = p;
     listProducts.value.clear();
     qte.value.clear();
     groupBy(
@@ -20,9 +21,18 @@ class DetailsController extends GetxController {
             .where((element) => element.produitId == p.produitId)
             .toList(),
         (s) => s.trancheId).forEach((key, value) {
-      listProducts.value.add(value);
       var x = sum(value);
+
       cartController.cartList.forEach((cart) {
+        value.forEach((item) {
+          if (item.categorieId.toString() +
+                  item.produitId.toString() +
+                  item.code.toString() +
+                  item.trancheId ==
+              cart.id) {
+            print("1");
+          }
+        });
         if (value[0].categorieId.toString() +
                 value[0].produitId.toString() +
                 value[0].trancheId ==
@@ -30,9 +40,16 @@ class DetailsController extends GetxController {
           x -= cart.qte;
         }
       });
+      listProducts.value.add(value);
       qte.value.add([0, x]);
     });
-    print(qte.value);
+  }
+
+  void reset() {
+    listProducts.clear();
+    qte.clear();
+    total.value = 0;
+    changeDetailsState(recentStock.value);
   }
 
   addToCart() {

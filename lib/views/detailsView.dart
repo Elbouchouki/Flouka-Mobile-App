@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/constants.dart';
@@ -236,21 +237,30 @@ class Details extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         color: darkBlueColor,
                         onPressed: () {
-                          detailsController.addToCart();
-                          Get.snackbar("Notification", "Produit Ajouté.",
-                              backgroundColor: Colors.white,
-                              titleText: Text("Notification"),
-                              colorText: darkBlueColor,
-                              snackPosition: SnackPosition.TOP,
-                              boxShadows: [
-                                BoxShadow(
-                                    spreadRadius: 2,
-                                    color: Colors.black.withOpacity(0.6),
-                                    blurRadius: 10)
-                              ],
-                              icon: Icon(Icons.notifications),
-                              shouldIconPulse: true,
-                              margin: EdgeInsets.all(10));
+                          if (detailsController.total.value != 0.0) {
+                            detailsController.addToCart();
+                            detailsController.reset();
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              buttonsBorderRadius:
+                                  BorderRadius.all(Radius.circular(2)),
+                              headerAnimationLoop: false,
+                              animType: AnimType.SCALE,
+                              title: 'Success',
+                              desc:
+                                  'les produits ont été ajoutés à votre panier avec succès.',
+                              showCloseIcon: false,
+                              btnOkText: "Voir Panier",
+                              btnOkIcon: Icons.shopping_cart_outlined,
+                              btnOkColor: darkBlueColor,
+                              btnCancelColor: lightBlueColor,
+                              btnCancelText: "Continuer",
+                              btnCancelIcon: Icons.arrow_back_outlined,
+                              btnCancelOnPress: () {},
+                              btnOkOnPress: () {},
+                            )..show();
+                          }
                         },
                         child: Container(
                           height: 50,
