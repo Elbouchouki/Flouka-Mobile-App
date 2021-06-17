@@ -14,6 +14,7 @@ class Cart {
 
   // factory Cart.fromJson(Map<String, dynamic> json) => Cart(
   //       produit: Stock.fromJson(json["produit"]),
+  //       id: json["id"],
   //       qte: json["qte"],
   //       totalPrice: json["totalPrice"],
   //     );
@@ -21,6 +22,7 @@ class Cart {
   // Map<String, dynamic> toJson() => {
   //       "produit": produit.toJson(),
   //       "qte": qte,
+  //       "id":id,
   //       "totalPrice": totalPrice,
   //     };
 }

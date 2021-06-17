@@ -25,21 +25,7 @@ class CartController extends GetxController {
   }
 
   void addProduct(Cart cart) {
-    if (_cartList.value.length == 0) {
-      _cartList.add(cart);
-      calculateTotal();
-      _sessionSave();
-      return;
-    }
-    _cartList.forEach((element) {
-      if (element.id == cart.id) {
-        element.qte += cart.qte;
-        element.totalPrice += cart.totalPrice;
-      } else {
-        _cartList.add(cart);
-      }
-    });
-    print(_cartList.value);
+    _cartList.add(cart);
     calculateTotal();
     _sessionSave();
   }
@@ -60,6 +46,6 @@ class CartController extends GetxController {
   }
 
   void _sessionSave() {
-    // _session.write("cartList", _cartList.value);
+    _session.write("cartList", _cartList.value);
   }
 }

@@ -168,21 +168,24 @@ class Details extends StatelessWidget {
                         ),
                         Column(
                           children: <Widget>[
-                            ListView.builder(
-                              shrinkWrap: true,
-                              itemCount:
-                                  detailsController.listProducts.value.length,
-                              itemBuilder: (BuildContext ctx, int i) {
-                                return Padding(
-                                  padding: EdgeInsets.only(top: 10, bottom: 10),
-                                  child: Tranche(
-                                    index: i,
-                                    produit: detailsController.listProducts[i]
-                                        [0],
+                            (detailsController.listProducts.value.length <= 0)
+                                ? Text("Voir votre panier")
+                                : ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: detailsController
+                                        .listProducts.value.length,
+                                    itemBuilder: (BuildContext ctx, int i) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 10, bottom: 10),
+                                        child: Tranche(
+                                          index: i,
+                                          produit: detailsController
+                                              .listProducts[i][0],
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            ),
                           ],
                         )
                       ],

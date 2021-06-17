@@ -19,24 +19,10 @@ class DetailsController extends GetxController {
             .where((element) => element.produitId == p.produitId)
             .toList(),
         (s) => s.trancheId).forEach((key, value) {
-      if (cartController.cartList.length != 0) {
-        cartController.cartList.forEach((cart) {
-          if (value[0].categorieId.toString() +
-                  value[0].produitId.toString() +
-                  value[0].trancheId ==
-              cart.produits[0].categorieId.toString() +
-                  cart.produits[0].produitId.toString() +
-                  cart.produits[0].trancheId) {
-            listProducts.value.add(value);
-            /* ----------------------------------- qsd ---------------------------------- */
-            qte.value.add([0, cart.qte]);
-          }
-        });
-      } else {
-        listProducts.value.add(value);
-        qte.value.add([0, sum(value)]);
-      }
+      listProducts.value.add(value);
+      qte.value.add([0, sum(value)]);
     });
+    print(qte.value);
   }
 
   addToCart() {
@@ -45,10 +31,12 @@ class DetailsController extends GetxController {
         cartController.addProduct(Cart(
             id: listProducts.value[i][0].categorieId.toString() +
                 listProducts.value[i][0].produitId.toString() +
-                listProducts.value[i][0].lotNum,
+                listProducts.value[i][0].lotNum +
+                listProducts.value[i][0].trancheId,
             produits: listProducts.value[i],
             qte: qte.value[i][0],
-            totalPrice: total.value));
+            totalPrice: double.parse(listProducts.value[i][0].prixN) *
+                qte.value[i][0]));
       }
     }
   }
@@ -96,9 +84,9 @@ class DetailsController extends GetxController {
     for (var i = 0; i < listProducts.length; i++) {
       if (double.parse(listProducts.value[i][0].poids) != 0) {
         for (var j = 0; j < qte[i][0]; j++) {
-          // print(double.parse(listProducts.value[i][j].poids));
-          // print(double.parse(listProducts.value[i][j].poids) *
-          //     double.parse(listProducts.value[i][j].prixN));
+          print(double.parse(listProducts.value[i][j].poids));
+          print(double.parse(listProducts.value[i][j].poids) *
+              double.parse(listProducts.value[i][j].prixN));
           t += double.parse(listProducts.value[i][j].poids) *
               double.parse(listProducts.value[i][j].prixN);
         }
