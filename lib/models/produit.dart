@@ -1,5 +1,8 @@
 import 'package:flutter_auth/models/categorie.dart';
 import 'package:flutter_auth/models/photo.dart';
+import 'dart:convert';
+
+import 'package:flutter_auth/models/preparationElement.dart';
 
 class Produit {
   Produit({
@@ -16,9 +19,14 @@ class Produit {
     this.familleId,
     this.modeVenteId,
     this.uniteId,
+    this.uniteAfficheId,
     this.modePreparationId,
-    this.unite,
+    this.createdAt,
+    this.updatedAt,
+    this.uniteVente,
+    this.uniteAffiche,
     this.photos,
+    this.preparations,
   });
 
   int id;
@@ -34,10 +42,14 @@ class Produit {
   int familleId;
   int modeVenteId;
   int uniteId;
+  int uniteAfficheId;
   int modePreparationId;
-
-  Categorie unite;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Categorie uniteVente;
+  Categorie uniteAffiche;
   List<Photo> photos;
+  List<PreparationElement> preparations;
 
   factory Produit.fromJson(Map<String, dynamic> json) => Produit(
         id: json["id"],
@@ -53,9 +65,15 @@ class Produit {
         familleId: json["famille_id"],
         modeVenteId: json["mode_vente_id"],
         uniteId: json["unite_id"],
+        uniteAfficheId: json["unite_affiche_id"],
         modePreparationId: json["mode_preparation_id"],
-        unite: Categorie.fromJson(json["unite"]),
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        uniteVente: Categorie.fromJson(json["unite_vente"]),
+        uniteAffiche: Categorie.fromJson(json["unite_affiche"]),
         photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
+        preparations: List<PreparationElement>.from(
+            json["preparations"].map((x) => PreparationElement.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -72,8 +90,13 @@ class Produit {
         "famille_id": familleId,
         "mode_vente_id": modeVenteId,
         "unite_id": uniteId,
+        "unite_affiche_id": uniteAfficheId,
         "mode_preparation_id": modePreparationId,
-        "unite": unite.toJson(),
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "unite_vente": uniteVente.toJson(),
+        "unite_affiche": uniteAffiche.toJson(),
         "photos": List<dynamic>.from(photos.map((x) => x.toJson())),
+        "preparations": List<dynamic>.from(preparations.map((x) => x.toJson())),
       };
 }

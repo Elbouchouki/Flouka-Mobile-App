@@ -78,7 +78,7 @@ class Tranche extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(10),
                             child: Text(
-                              produit.stock.produit.unite.nom,
+                              produit.stock.produit.uniteAffiche.nom,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, color: darkGray),
                             ),
@@ -113,7 +113,7 @@ class Tranche extends StatelessWidget {
                 Text(produit.prixN.toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.w700, color: lightBlueColor)),
-                Text(" DH/" + produit.stock.produit.unite.nom,
+                Text(" DH/" + produit.stock.produit.uniteVente.nom,
                     style:
                         TextStyle(fontWeight: FontWeight.w700, color: darkGray))
               ],

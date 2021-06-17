@@ -14,8 +14,6 @@ class Stock {
     this.stocksId,
     this.code,
     this.poids,
-    this.qteTranche,
-    this.qteVendue,
     this.qteRestante,
     this.cr,
     this.prixN,
@@ -29,7 +27,6 @@ class Stock {
     this.type,
     this.qte,
     this.prixAchat,
-    this.brFounisseur,
     this.uniteId,
     this.brNum,
     this.lotNum,
@@ -49,6 +46,7 @@ class Stock {
     this.sousCategorieId,
     this.familleId,
     this.modeVenteId,
+    this.uniteAfficheId,
     this.modePreparationId,
     this.stockLignesId,
     this.stock,
@@ -59,8 +57,6 @@ class Stock {
   int stocksId;
   int code;
   String poids;
-  String qteTranche;
-  String qteVendue;
   String qteRestante;
   String cr;
   String prixN;
@@ -74,7 +70,6 @@ class Stock {
   String type;
   String qte;
   String prixAchat;
-  String brFounisseur;
   int uniteId;
   String brNum;
   String lotNum;
@@ -94,6 +89,7 @@ class Stock {
   int sousCategorieId;
   int familleId;
   int modeVenteId;
+  int uniteAfficheId;
   int modePreparationId;
   int stockLignesId;
   StockClass stock;
@@ -104,8 +100,6 @@ class Stock {
         stocksId: json["stocks_id"],
         code: json["code"],
         poids: json["poids"],
-        qteTranche: json["qteTranche"],
-        qteVendue: json["qte_vendue"],
         qteRestante: json["qte_restante"],
         cr: json["cr"],
         prixN: json["prix_n"],
@@ -119,7 +113,6 @@ class Stock {
         type: json["type"],
         qte: json["qte"],
         prixAchat: json["prix_achat"],
-        brFounisseur: json["br_founisseur"],
         uniteId: json["unite_id"],
         brNum: json["br_num"],
         lotNum: json["lot_num"],
@@ -139,6 +132,7 @@ class Stock {
         sousCategorieId: json["sous_categorie_id"],
         familleId: json["famille_id"],
         modeVenteId: json["mode_vente_id"],
+        uniteAfficheId: json["unite_affiche_id"],
         modePreparationId: json["mode_preparation_id"],
         stockLignesId: json["stock_lignes_id"],
         stock: StockClass.fromJson(json["stock"]),
@@ -150,8 +144,6 @@ class Stock {
         "stocks_id": stocksId,
         "code": code,
         "poids": poids,
-        "qteTranche": qteTranche,
-        "qte_vendue": qteVendue,
         "qte_restante": qteRestante,
         "cr": cr,
         "prix_n": prixN,
@@ -165,7 +157,6 @@ class Stock {
         "type": type,
         "qte": qte,
         "prix_achat": prixAchat,
-        "br_founisseur": brFounisseur,
         "unite_id": uniteId,
         "br_num": brNum,
         "lot_num": lotNum,
@@ -185,6 +176,7 @@ class Stock {
         "sous_categorie_id": sousCategorieId,
         "famille_id": familleId,
         "mode_vente_id": modeVenteId,
+        "unite_affiche_id": uniteAfficheId,
         "mode_preparation_id": modePreparationId,
         "stock_lignes_id": stockLignesId,
         "stock": stock.toJson(),

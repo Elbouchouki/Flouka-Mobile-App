@@ -12,6 +12,8 @@ class Depot {
   int orderPriorite;
   int villeId;
   int villeZoneId;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   factory Depot.fromJson(Map<String, dynamic> json) => Depot(
         id: json["id"],

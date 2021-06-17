@@ -19,7 +19,10 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
-    // _cartList.value = _session.read("cartList");
+    if (_session.read("cartList") != null) {
+      _cartList.value = Cart.cartFromJson(_session.read("cartList"));
+    }
+
     calculateTotal();
     super.onInit();
   }
@@ -40,12 +43,10 @@ class CartController extends GetxController {
   void deleteProductByIndex(int index) {
     _cartList.removeAt(index);
     calculateTotal();
-
-    // _cartList.value.removeAt(index);
     _sessionSave();
   }
 
   void _sessionSave() {
-    _session.write("cartList", _cartList.value);
+    _session.write("cartList", Cart.cartToJson(_cartList.value));
   }
 }

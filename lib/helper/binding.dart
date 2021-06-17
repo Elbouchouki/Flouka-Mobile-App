@@ -15,6 +15,7 @@ class HomeBinding implements Bindings {
     final _session = GetStorage();
     _session.writeIfNull("villeSelected", false);
     _session.writeIfNull("zoneSelected", false);
+    _session.writeIfNull("cartList", null);
     Get.lazyPut<VilleController>(() => VilleController());
     Get.lazyPut<ZoneController>(() => ZoneController());
     Get.lazyPut<ProductViewController>(() => ProductViewController());

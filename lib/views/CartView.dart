@@ -141,7 +141,7 @@ class CartView extends StatelessWidget {
                             child: Slidable(
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 30, right: 30, bottom: 30),
+                                    left: 10, right: 10, bottom: 30),
                                 child: Row(
                                   children: <Widget>[
                                     Container(
@@ -197,11 +197,23 @@ class CartView extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          cartController
-                                              .cartList[index].produits[0].nom,
+                                          cartController.cartList[index]
+                                                  .produits[0].nom[0]
+                                                  .toUpperCase() +
+                                              cartController.cartList[index]
+                                                  .produits[0].nom
+                                                  .substring(1)
+                                                  .toLowerCase(),
                                           style: TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.w700),
+                                        ),
+                                        Text(
+                                          cartController.cartList[index]
+                                              .produits[0].stock.categorie.nom,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500),
                                         ),
                                         SizedBox(
                                           height: 15,
@@ -211,10 +223,18 @@ class CartView extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Text(
-                                              cartController.cartList[index]
-                                                      .produits[0].tranche.nom
-                                                      .toString() +
-                                                  " |",
+                                              (double.parse(cartController
+                                                          .cartList[index]
+                                                          .produits[0]
+                                                          .poids) !=
+                                                      0)
+                                                  ? ""
+                                                  : cartController
+                                                      .cartList[index]
+                                                      .produits[0]
+                                                      .tranche
+                                                      .nom
+                                                      .toString(),
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w500),
@@ -223,11 +243,45 @@ class CartView extends StatelessWidget {
                                               width: 5,
                                             ),
                                             Text(
-                                              "x" +
-                                                  cartController
-                                                      .cartList[index].qte
-                                                      .toString() +
-                                                  " |",
+                                              (double.parse(cartController
+                                                          .cartList[index]
+                                                          .produits[0]
+                                                          .poids) !=
+                                                      0)
+                                                  ? (double.parse(cartController
+                                                              .cartList[index]
+                                                              .produits[0]
+                                                              .poids) <
+                                                          1)
+                                                      ? ((double.parse(cartController
+                                                                      .cartList[
+                                                                          index]
+                                                                      .produits[
+                                                                          0]
+                                                                      .poids) *
+                                                                  1000)
+                                                              .toString() +
+                                                          " " +
+                                                          "grammes"
+                                                              " |")
+                                                      : (cartController
+                                                              .cartList[index]
+                                                              .produits[0]
+                                                              .poids +
+                                                          " " +
+                                                          cartController
+                                                              .cartList[index]
+                                                              .produits[0]
+                                                              .stock
+                                                              .produit
+                                                              .uniteVente
+                                                              .nom +
+                                                          " |")
+                                                  : ("x" +
+                                                      cartController
+                                                          .cartList[index].qte
+                                                          .toString() +
+                                                      " |"),
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w500),
@@ -238,6 +292,7 @@ class CartView extends StatelessWidget {
                                             Text(
                                               cartController
                                                   .cartList[index].totalPrice
+                                                  .toStringAsFixed(2)
                                                   .toString(),
                                               style: TextStyle(
                                                   color: darkBlueColor,

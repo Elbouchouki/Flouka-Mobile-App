@@ -10,6 +10,7 @@ class DetailsController extends GetxController {
   CartController cartController = Get.find();
   var listProducts = List<List<Stock>>().obs;
   var qte = List<List<int>>().obs;
+
   var total = 0.0.obs;
   void changeDetailsState(Stock p) {
     listProducts.value.clear();
@@ -20,7 +21,16 @@ class DetailsController extends GetxController {
             .toList(),
         (s) => s.trancheId).forEach((key, value) {
       listProducts.value.add(value);
-      qte.value.add([0, sum(value)]);
+      var x = sum(value);
+      cartController.cartList.forEach((cart) {
+        if (value[0].categorieId.toString() +
+                value[0].produitId.toString() +
+                value[0].trancheId ==
+            cart.id) {
+          x -= cart.qte;
+        }
+      });
+      qte.value.add([0, x]);
     });
     print(qte.value);
   }
@@ -28,10 +38,25 @@ class DetailsController extends GetxController {
   addToCart() {
     for (var i = 0; i < listProducts.length; i++) {
       if (qte.value[i][0] > 0) {
+        if (double.parse(listProducts[i][0].poids) != 0) {
+          for (var j = 0; j < qte.value[i][0]; j++) {
+            cartController.addProduct(Cart(
+                id: listProducts.value[i][j].categorieId.toString() +
+                    listProducts.value[i][j].produitId.toString() +
+                    listProducts.value[i][j].code.toString() +
+                    // listProducts.value[i][j].lotNum +
+                    listProducts.value[i][j].trancheId,
+                produits: listProducts.value[i],
+                qte: 1,
+                totalPrice: double.parse(listProducts.value[i][0].prixN) *
+                    double.parse(listProducts[i][j].poids)));
+          }
+          continue;
+        }
         cartController.addProduct(Cart(
             id: listProducts.value[i][0].categorieId.toString() +
                 listProducts.value[i][0].produitId.toString() +
-                listProducts.value[i][0].lotNum +
+                // listProducts.value[i][0].lotNum +
                 listProducts.value[i][0].trancheId,
             produits: listProducts.value[i],
             qte: qte.value[i][0],
@@ -39,6 +64,7 @@ class DetailsController extends GetxController {
                 qte.value[i][0]));
       }
     }
+    print(cartController.cartList);
   }
 
   int sum(List<Stock> produits) {

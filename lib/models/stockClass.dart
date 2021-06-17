@@ -8,15 +8,11 @@ class StockClass {
     this.type,
     this.qte,
     this.prixAchat,
-    this.brFounisseur,
     this.uniteId,
-    this.brNum,
     this.lotNum,
     this.categorieId,
     this.produitId,
     this.depotId,
-    this.createdAt,
-    this.updatedAt,
     this.depot,
     this.produit,
     this.categorie,
@@ -26,15 +22,11 @@ class StockClass {
   String type;
   String qte;
   String prixAchat;
-  String brFounisseur;
   int uniteId;
-  String brNum;
   String lotNum;
   int categorieId;
   int produitId;
   int depotId;
-  DateTime createdAt;
-  DateTime updatedAt;
   Depot depot;
   Produit produit;
   Categorie categorie;
@@ -44,9 +36,7 @@ class StockClass {
         type: json["type"],
         qte: json["qte"],
         prixAchat: json["prix_achat"],
-        brFounisseur: json["br_founisseur"],
         uniteId: json["unite_id"],
-        brNum: json["br_num"],
         lotNum: json["lot_num"],
         categorieId: json["categorie_id"],
         produitId: json["produit_id"],
@@ -61,9 +51,7 @@ class StockClass {
         "type": type,
         "qte": qte,
         "prix_achat": prixAchat,
-        "br_founisseur": brFounisseur,
         "unite_id": uniteId,
-        "br_num": brNum,
         "lot_num": lotNum,
         "categorie_id": categorieId,
         "produit_id": produitId,
