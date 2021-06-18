@@ -22,17 +22,12 @@ class DetailsController extends GetxController {
             .toList(),
         (s) => s.trancheId).forEach((key, value) {
       var x = sum(value);
-
+      var list = value;
       cartController.cartList.forEach((cart) {
-        value.forEach((item) {
-          if (item.categorieId.toString() +
-                  item.produitId.toString() +
-                  item.code.toString() +
-                  item.trancheId ==
-              cart.id) {
-            print("1");
-          }
-        });
+        if (cart.id == value[0].code.toString()) {
+          list.removeWhere((element) => element.code.toString() == cart.id);
+        }
+
         if (value[0].categorieId.toString() +
                 value[0].produitId.toString() +
                 value[0].trancheId ==
@@ -40,8 +35,10 @@ class DetailsController extends GetxController {
           x -= cart.qte;
         }
       });
-      listProducts.value.add(value);
-      qte.value.add([0, x]);
+      if (value.length > 0) {
+        listProducts.value.add(value);
+        qte.value.add([0, x]);
+      }
     });
   }
 
@@ -57,13 +54,12 @@ class DetailsController extends GetxController {
       if (qte.value[i][0] > 0) {
         if (double.parse(listProducts[i][0].poids) != 0) {
           for (var j = 0; j < qte.value[i][0]; j++) {
+            var x = List<Stock>();
+            x.clear();
+            x.add(listProducts.value[i][j]);
             cartController.addProduct(Cart(
-                id: listProducts.value[i][j].categorieId.toString() +
-                    listProducts.value[i][j].produitId.toString() +
-                    listProducts.value[i][j].code.toString() +
-                    // listProducts.value[i][j].lotNum +
-                    listProducts.value[i][j].trancheId,
-                produits: listProducts.value[i],
+                id: listProducts.value[i][j].code.toString(),
+                produits: x,
                 qte: 1,
                 totalPrice: double.parse(listProducts.value[i][0].prixN) *
                     double.parse(listProducts[i][j].poids)));
@@ -127,9 +123,6 @@ class DetailsController extends GetxController {
     for (var i = 0; i < listProducts.length; i++) {
       if (double.parse(listProducts.value[i][0].poids) != 0) {
         for (var j = 0; j < qte[i][0]; j++) {
-          print(double.parse(listProducts.value[i][j].poids));
-          print(double.parse(listProducts.value[i][j].poids) *
-              double.parse(listProducts.value[i][j].prixN));
           t += double.parse(listProducts.value[i][j].poids) *
               double.parse(listProducts.value[i][j].prixN);
         }

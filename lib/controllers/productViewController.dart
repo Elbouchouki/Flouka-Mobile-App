@@ -16,7 +16,7 @@ class ProductViewController extends GetxController {
           result.where((element) => (element.active == true)).toList();
       sousCategories.value
           .insert(0, SousCategorie(id: 0, nom: "Tous", active: true));
-      print(sousCategories.value);
+      sousCategories.refresh();
     });
   }
 
